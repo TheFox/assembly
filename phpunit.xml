@@ -1,0 +1,36 @@
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/3.7/phpunit.xsd"
+	backupGlobals="true"
+	backupStaticAttributes="false"
+	checkForUnintentionallyCoveredCode="true"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	processIsolation="false"
+	stopOnError="true"
+	stopOnFailure="true"
+	stopOnIncomplete="false"
+	stopOnSkipped="false"
+	timeoutForSmallTests="1"
+	timeoutForMediumTests="10"
+	timeoutForLargeTests="60"
+	strict="true"
+	verbose="true">
+	
+	<testsuites>
+		<testsuite name="My Test Suite">
+			<file>tests/AssemblyTest.php</file>
+			<file>tests/InstructionTest.php</file>
+			<file>tests/NopTest.php</file>
+			<file>tests/PushTest.php</file>
+			<file>tests/RetTest.php</file>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist addUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">src</directory>
+		</whitelist>
+	</filter>
+</phpunit>

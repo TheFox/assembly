@@ -1,0 +1,33 @@
+{
+	"name": "thefox/assembly",
+	"description": "DESCRIPTION",
+	"license": "GPL-3.0",
+	"type": "project",
+	"keywords": [ "asm", "assembly", "assembler", "x86", "x86_64", "x86-64" ],
+	"homepage": "http://fox21.at",
+	"authors": [
+		{
+			"name": "Christian Mayer",
+			"email": "christian@fox21.at",
+			"homepage": "http://fox21.at"
+		}
+	],
+	"require": {
+		"php": ">=5.3"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~4.1",
+		"doctrine/common": "~2.4",
+		"thefox/phpcsrs": "~1.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"TheFox": "src"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.1.x-dev"
+		}
+	}
+}
