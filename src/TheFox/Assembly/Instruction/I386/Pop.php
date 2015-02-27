@@ -4,7 +4,7 @@ namespace TheFox\Assembly\Instruction\I386;
 
 use TheFox\Assembly\Instruction\X86\Pop as X86Pop;
 
-class Pop extends Instruction{
+class Pop extends X86Pop{
 	
 	public function __construct($register){
 		$register = strtolower($register);

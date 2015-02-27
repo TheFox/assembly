@@ -4,7 +4,7 @@ namespace TheFox\Assembly\Instruction\I386;
 
 use TheFox\Assembly\Instruction\X86\Push as X86Push;
 
-class Push extends Instruction{
+class Push extends X86Push{
 	
 	public function __construct($register){
 		$register = strtolower($register);
