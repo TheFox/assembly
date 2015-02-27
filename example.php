@@ -12,15 +12,12 @@ $instr86 = new X86Instruction();
 $instr8664 = new X8664Instruction();
 
 $asm = new Assembly();
+$asm->addInstruction(new Nop());
+$asm->addInstruction(new Nop());
+$asm->addInstruction(new Nop());
 $asm->addInstruction(new Ret());
-$asm->addInstruction(new Nop());
-$asm->addInstruction(new Nop());
-$asm->addInstruction(new Nop());
-\Doctrine\Common\Util\Debug::dump($asm);
-
 
 $opcode = $asm->assemble();
-\Doctrine\Common\Util\Debug::dump($opcode);
 
 $hex = unpack('H*', $opcode);
 \Doctrine\Common\Util\Debug::dump($hex);
