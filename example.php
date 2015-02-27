@@ -3,13 +3,8 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 use TheFox\Assembly\Assembly;
-use TheFox\Assembly\Instruction\X86\Instruction as X86Instruction;
-use TheFox\Assembly\Instruction\X86\Ret;
-use TheFox\Assembly\Instruction\X86\Nop;
-use TheFox\Assembly\Instruction\X86_64\Instruction as X8664Instruction;
-
-$instr86 = new X86Instruction();
-$instr8664 = new X8664Instruction();
+use TheFox\Assembly\Instruction\X86_64\Nop;
+use TheFox\Assembly\Instruction\X86_64\Ret;
 
 $asm = new Assembly();
 $asm->addInstruction(new Nop());
