@@ -3,7 +3,7 @@
 	"description": "Assemble x86, i386, x86_64 instructions with PHP.",
 	"license": "GPL-3.0",
 	"type": "project",
-	"keywords": [ "asm", "assembly", "assembler", "x86", "x86_64", "x86-64" ],
+	"keywords": [ "asm", "assembly", "assembler", "x86", "i386", "x86_64", "x86-64" ],
 	"homepage": "http://fox21.at",
 	"authors": [
 		{
