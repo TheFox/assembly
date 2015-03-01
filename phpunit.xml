@@ -23,6 +23,7 @@
 		<testsuite name="My Test Suite">
 			<file>tests/AssemblyTest.php</file>
 			<file>tests/InstructionTest.php</file>
+			<file>tests/MovTest.php</file>
 			<file>tests/NopTest.php</file>
 			<file>tests/PopTest.php</file>
 			<file>tests/PushTest.php</file>
