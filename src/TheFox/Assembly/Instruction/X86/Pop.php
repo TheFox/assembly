@@ -8,20 +8,23 @@ class Pop extends Instruction{
 	
 	public function __construct($register){
 		$register = strtolower($register);
-		#$this->setOpcode(pack('H*', 'C3'));
+		$opcode = '';
 		switch($register){
 			case 'ax':
-				$this->setOpcode(pack('H*', '58'));
+				$opcode = '58';
 				break;
 			case 'cx':
-				$this->setOpcode(pack('H*', '59'));
+				$opcode = '59';
 				break;
 			case 'dx':
-				$this->setOpcode(pack('H*', '5A'));
+				$opcode = '5A';
 				break;
 			case 'bx':
-				$this->setOpcode(pack('H*', '5B'));
+				$opcode = '5B';
 				break;
+		}
+		if($opcode){
+			$this->setOpcode(pack('H*', $opcode));
 		}
 	}
 	
