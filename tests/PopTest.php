@@ -93,25 +93,36 @@ class PopTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals('665b', $opcode);
 		
 		
-		$instr = new X8664Pop('eax');
+		$instr = new X8664Pop('rax');
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
 		$this->assertEquals('58', $opcode);
 		
-		$instr = new X8664Pop('ecx');
+		$instr = new X8664Pop('rcx');
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
 		$this->assertEquals('59', $opcode);
 		
-		$instr = new X8664Pop('edx');
+		$instr = new X8664Pop('rdx');
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
 		$this->assertEquals('5a', $opcode);
 		
-		$instr = new X8664Pop('ebx');
+		$instr = new X8664Pop('rbx');
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
 		$this->assertEquals('5b', $opcode);
+	}
+	
+	/**
+	 * @expectedException UnexpectedValueException
+	 * @expectedExceptionCode 1
+	 */
+	public function testX8664UnexpectedValueException(){
+		$instr = new X8664Pop('eax');
+		$instr = new X8664Pop('ecx');
+		$instr = new X8664Pop('edx');
+		$instr = new X8664Pop('ebx');
 	}
 	
 }
