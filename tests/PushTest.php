@@ -93,25 +93,36 @@ class PushTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals('6653', $opcode);
 		
 		
-		$instr = new X8664Push('eax');
+		$instr = new X8664Push('rax');
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
 		$this->assertEquals('50', $opcode);
 		
-		$instr = new X8664Push('ecx');
+		$instr = new X8664Push('rcx');
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
 		$this->assertEquals('51', $opcode);
 		
-		$instr = new X8664Push('edx');
+		$instr = new X8664Push('rdx');
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
 		$this->assertEquals('52', $opcode);
 		
-		$instr = new X8664Push('ebx');
+		$instr = new X8664Push('rbx');
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
 		$this->assertEquals('53', $opcode);
+	}
+	
+	/**
+	 * @expectedException UnexpectedValueException
+	 * @expectedExceptionCode 1
+	 */
+	public function testX8664UnexpectedValueException(){
+		$instr = new X8664Push('eax');
+		$instr = new X8664Push('ecx');
+		$instr = new X8664Push('edx');
+		$instr = new X8664Push('ebx');
 	}
 	
 }
