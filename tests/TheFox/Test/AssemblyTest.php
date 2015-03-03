@@ -1,5 +1,9 @@
 <?php
 
+namespace TheFox\Test;
+
+use PHPUnit_Framework_TestCase;
+
 use TheFox\Assembly\Assembly;
 use TheFox\Assembly\Instruction\X86\Nop as X86Nop;
 use TheFox\Assembly\Instruction\X86\Ret as X86Ret;
@@ -45,6 +49,14 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$opcode = $opcode[1];
 		
 		$this->assertEquals('90c3', $opcode);
+	}
+	
+	public function testNum(){
+		$this->assertTrue(is_numeric('0xff'));
+		$this->assertTrue(is_numeric(0xff));
+		
+		$this->assertEquals('AB', pack('v', 0x4241));
+		$this->assertEquals('CD', pack('n', 0x4344));
 	}
 	
 }

@@ -1,5 +1,9 @@
 <?php
 
+namespace TheFox\Test;
+
+use PHPUnit_Framework_TestCase;
+
 use TheFox\Assembly\Instruction\X86\Nop as X86Nop;
 use TheFox\Assembly\Instruction\I386\Nop as I386Nop;
 use TheFox\Assembly\Instruction\X86_64\Nop as X8664Nop;

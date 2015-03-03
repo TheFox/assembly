@@ -3,6 +3,7 @@
 	xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/3.7/phpunit.xsd"
 	backupGlobals="true"
 	backupStaticAttributes="false"
+	bootstrap="bootstrap.php"
 	checkForUnintentionallyCoveredCode="true"
 	colors="true"
 	convertErrorsToExceptions="true"
@@ -20,13 +21,15 @@
 	
 	<testsuites>
 		<testsuite name="My Test Suite">
-			<file>tests/AssemblyTest.php</file>
-			<file>tests/InstructionTest.php</file>
-			<file>tests/MovTest.php</file>
-			<file>tests/NopTest.php</file>
-			<file>tests/PopTest.php</file>
-			<file>tests/PushTest.php</file>
-			<file>tests/RetTest.php</file>
+			<file>tests/TheFox/Test/AssemblyTest.php</file>
+			<file>tests/TheFox/Test/InstructionTest.php</file>
+			<file>tests/TheFox/Test/Mov8086Test.php</file>
+			<file>tests/TheFox/Test/MovI386Test.php</file>
+			<file>tests/TheFox/Test/MovX8664Test.php</file>
+			<file>tests/TheFox/Test/NopTest.php</file>
+			<file>tests/TheFox/Test/PopTest.php</file>
+			<file>tests/TheFox/Test/PushTest.php</file>
+			<file>tests/TheFox/Test/RetTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>

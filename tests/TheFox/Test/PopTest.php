@@ -1,5 +1,9 @@
 <?php
 
+namespace TheFox\Test;
+
+use PHPUnit_Framework_TestCase;
+
 use TheFox\Assembly\Instruction\X86\Pop as X86Pop;
 use TheFox\Assembly\Instruction\I386\Pop as I386Pop;
 use TheFox\Assembly\Instruction\X86_64\Pop as X8664Pop;
@@ -23,7 +27,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	/**
 	 * @dataProvider testX86Provider
 	 */
-	public function testX86($register, $expected){
+	public function test8086($register, $expected){
 		$instr = new X86Pop($register);
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
