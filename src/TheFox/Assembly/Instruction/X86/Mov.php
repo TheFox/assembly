@@ -61,7 +61,9 @@ class Mov extends Instruction{
 				$this->setOpcode(pack('H*', $opcode.$srcOpcode));
 			}
 		}
-		elseif(is_string($src) && is_string($dst)){
+		elseif(is_string($src) && is_string($dst)
+			&& strlen($src) == 2 && strlen($dst) == 2){
+			
 			$base = 0x8800;
 			switch($src[1]){
 				case 'x':
