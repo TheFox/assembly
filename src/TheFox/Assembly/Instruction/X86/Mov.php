@@ -64,6 +64,8 @@ class Mov extends Instruction{
 		elseif(is_string($src) && is_string($dst)){
 			$base = 0x8800;
 			switch($src[1]){
+				case 'x':
+					$base += 0x100;
 				case 'l':
 					$base += 0xc0;
 					break;

@@ -223,6 +223,27 @@ class MovTest extends PHPUnit_Framework_TestCase{
 		$rv[] = array('bh', 'bh', '88ff');
 		
 		
+		$rv[] = array('ax', 'ax', '89c0');
+		$rv[] = array('ax', 'cx', '89c1');
+		$rv[] = array('ax', 'dx', '89c2');
+		$rv[] = array('ax', 'bx', '89c3');
+		
+		$rv[] = array('cx', 'ax', '89c8');
+		$rv[] = array('cx', 'cx', '89c9');
+		$rv[] = array('cx', 'dx', '89ca');
+		$rv[] = array('cx', 'bx', '89cb');
+		
+		$rv[] = array('dx', 'ax', '89d0');
+		$rv[] = array('dx', 'cx', '89d1');
+		$rv[] = array('dx', 'dx', '89d2');
+		$rv[] = array('dx', 'bx', '89d3');
+		
+		$rv[] = array('bx', 'ax', '89d8');
+		$rv[] = array('bx', 'cx', '89d9');
+		$rv[] = array('bx', 'dx', '89da');
+		$rv[] = array('bx', 'bx', '89db');
+		
+		
 		return $rv;
 	}
 	
