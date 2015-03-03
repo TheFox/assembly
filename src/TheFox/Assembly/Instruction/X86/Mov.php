@@ -62,13 +62,13 @@ class Mov extends Instruction{
 			}
 		}
 		elseif(is_string($src) && is_string($dst)){
-			$base = 0;
+			$base = 0x8800;
 			switch($src[1]){
 				case 'l':
-					$base = 0xc0;
+					$base += 0xc0;
 					break;
 				case 'h':
-					$base = 0xe0;
+					$base += 0xe0;
 					break;
 			}
 			switch($src[0]){
@@ -108,7 +108,7 @@ class Mov extends Instruction{
 					break;
 			}
 			
-			$opcode = '88'.dechex($base);
+			$opcode = dechex($base);
 			$this->setOpcode(pack('H*', $opcode));
 		}
 	}
