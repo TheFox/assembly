@@ -15,32 +15,35 @@ class Push extends X86Push{
 		switch($register){
 			case 'ax':
 				$pre = $preC;
+				break;
 			case 'eax':
-				$instr = new X86Push('ax');
-				$this->setOpcode($pre.$instr->assemble());
+				$register = 'ax';
 				break;
 			
 			case 'cx':
 				$pre = $preC;
+				break;
 			case 'ecx':
-				$instr = new X86Push('cx');
-				$this->setOpcode($pre.$instr->assemble());
+				$register = 'cx';
 				break;
 			
 			case 'dx':
 				$pre = $preC;
+				break;
 			case 'edx':
-				$instr = new X86Push('dx');
-				$this->setOpcode($pre.$instr->assemble());
+				$register = 'dx';
 				break;
 			
 			case 'bx':
 				$pre = $preC;
+				break;
 			case 'ebx':
-				$instr = new X86Push('bx');
-				$this->setOpcode($pre.$instr->assemble());
+				$register = 'bx';
 				break;
 		}
+		
+		$instr = new X86Push($register);
+		$this->setOpcode($pre.$instr->assemble());
 	}
 	
 }

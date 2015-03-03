@@ -15,32 +15,35 @@ class Pop extends X86Pop{
 		switch($register){
 			case 'ax':
 				$pre = $preC;
+				break;
 			case 'eax':
-				$instr = new X86Pop('ax');
-				$this->setOpcode($pre.$instr->assemble());
+				$register = 'ax';
 				break;
 			
 			case 'cx':
 				$pre = $preC;
+				break;
 			case 'ecx':
-				$instr = new X86Pop('cx');
-				$this->setOpcode($pre.$instr->assemble());
+				$register = 'cx';
 				break;
 			
 			case 'dx':
 				$pre = $preC;
+				break;
 			case 'edx':
-				$instr = new X86Pop('dx');
-				$this->setOpcode($pre.$instr->assemble());
+				$register = 'dx';
 				break;
 			
 			case 'bx':
 				$pre = $preC;
+				break;
 			case 'ebx':
-				$instr = new X86Pop('bx');
-				$this->setOpcode($pre.$instr->assemble());
+				$register = 'bx';
 				break;
 		}
+		
+		$instr = new X86Pop($register);
+		$this->setOpcode($pre.$instr->assemble());
 	}
 	
 }

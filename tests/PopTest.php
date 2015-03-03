@@ -6,112 +6,77 @@ use TheFox\Assembly\Instruction\X86_64\Pop as X8664Pop;
 
 class PopTest extends PHPUnit_Framework_TestCase{
 	
-	public function testX86(){
-		$instr = new X86Pop('ax');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('58', $opcode);
+	public function testX86Provider(){
+		$rv = array();
 		
-		$instr = new X86Pop('cx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('59', $opcode);
+		$rv[] = array('ax', '58');
+		$rv[] = array('cx', '59');
+		$rv[] = array('dx', '5a');
+		$rv[] = array('bx', '5b');
 		
-		$instr = new X86Pop('dx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('5a', $opcode);
-		
-		$instr = new X86Pop('bx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('5b', $opcode);
+		return $rv;
 	}
 	
-	public function testI386(){
-		$instr = new I386Pop('ax');
+	/**
+	 * @dataProvider testX86Provider
+	 */
+	public function testX86($register, $expected){
+		$instr = new X86Pop($register);
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
-		$this->assertEquals('6658', $opcode);
-		
-		$instr = new I386Pop('cx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('6659', $opcode);
-		
-		$instr = new I386Pop('dx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('665a', $opcode);
-		
-		$instr = new I386Pop('bx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('665b', $opcode);
-		
-		
-		$instr = new I386Pop('eax');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('58', $opcode);
-		
-		$instr = new I386Pop('ecx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('59', $opcode);
-		
-		$instr = new I386Pop('edx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('5a', $opcode);
-		
-		$instr = new I386Pop('ebx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('5b', $opcode);
+		$this->assertEquals($expected, $opcode);
 	}
 	
-	public function testX8664(){
-		$instr = new X8664Pop('ax');
+	public function testI386Provider(){
+		$rv = array();
+		
+		$rv[] = array('ax', '6658');
+		$rv[] = array('cx', '6659');
+		$rv[] = array('dx', '665a');
+		$rv[] = array('bx', '665b');
+		
+		$rv[] = array('eax', '58');
+		$rv[] = array('ecx', '59');
+		$rv[] = array('edx', '5a');
+		$rv[] = array('ebx', '5b');
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider testI386Provider
+	 */
+	public function testI386($register, $expected){
+		$instr = new I386Pop($register);
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
-		$this->assertEquals('6658', $opcode);
+		$this->assertEquals($expected, $opcode);
+	}
+	
+	public function testX8664Provider(){
+		$rv = array();
 		
-		$instr = new X8664Pop('cx');
+		$rv[] = array('ax', '6658');
+		$rv[] = array('cx', '6659');
+		$rv[] = array('dx', '665a');
+		$rv[] = array('bx', '665b');
+		
+		$rv[] = array('rax', '58');
+		$rv[] = array('rcx', '59');
+		$rv[] = array('rdx', '5a');
+		$rv[] = array('rbx', '5b');
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider testX8664Provider
+	 */
+	public function testX8664($register, $expected){
+		$instr = new X8664Pop($register);
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
-		$this->assertEquals('6659', $opcode);
-		
-		$instr = new X8664Pop('dx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('665a', $opcode);
-		
-		$instr = new X8664Pop('bx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('665b', $opcode);
-		
-		
-		$instr = new X8664Pop('rax');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('58', $opcode);
-		
-		$instr = new X8664Pop('rcx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('59', $opcode);
-		
-		$instr = new X8664Pop('rdx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('5a', $opcode);
-		
-		$instr = new X8664Pop('rbx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('5b', $opcode);
+		$this->assertEquals($expected, $opcode);
 	}
 	
 	/**

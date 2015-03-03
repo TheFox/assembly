@@ -6,112 +6,77 @@ use TheFox\Assembly\Instruction\X86_64\Push as X8664Push;
 
 class PushTest extends PHPUnit_Framework_TestCase{
 	
-	public function testX86(){
-		$instr = new X86Push('ax');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('50', $opcode);
+	public function testX86Provider(){
+		$rv = array();
 		
-		$instr = new X86Push('cx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('51', $opcode);
+		$rv[] = array('ax', '50');
+		$rv[] = array('cx', '51');
+		$rv[] = array('dx', '52');
+		$rv[] = array('bx', '53');
 		
-		$instr = new X86Push('dx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('52', $opcode);
-		
-		$instr = new X86Push('bx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('53', $opcode);
+		return $rv;
 	}
 	
-	public function testI386(){
-		$instr = new I386Push('ax');
+	/**
+	 * @dataProvider testX86Provider
+	 */
+	public function testX86($register, $expected){
+		$instr = new X86Push($register);
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
-		$this->assertEquals('6650', $opcode);
-		
-		$instr = new I386Push('cx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('6651', $opcode);
-		
-		$instr = new I386Push('dx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('6652', $opcode);
-		
-		$instr = new I386Push('bx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('6653', $opcode);
-		
-		
-		$instr = new I386Push('eax');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('50', $opcode);
-		
-		$instr = new I386Push('ecx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('51', $opcode);
-		
-		$instr = new I386Push('edx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('52', $opcode);
-		
-		$instr = new I386Push('ebx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('53', $opcode);
+		$this->assertEquals($expected, $opcode);
 	}
 	
-	public function testX8664(){
-		$instr = new X8664Push('ax');
+	public function testI386Provider(){
+		$rv = array();
+		
+		$rv[] = array('ax', '6650');
+		$rv[] = array('cx', '6651');
+		$rv[] = array('dx', '6652');
+		$rv[] = array('bx', '6653');
+		
+		$rv[] = array('eax', '50');
+		$rv[] = array('ecx', '51');
+		$rv[] = array('edx', '52');
+		$rv[] = array('ebx', '53');
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider testI386Provider
+	 */
+	public function testI386($register, $expected){
+		$instr = new I386Push($register);
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
-		$this->assertEquals('6650', $opcode);
+		$this->assertEquals($expected, $opcode);
+	}
+	
+	public function testX8664Provider(){
+		$rv = array();
 		
-		$instr = new X8664Push('cx');
+		$rv[] = array('ax', '6650');
+		$rv[] = array('cx', '6651');
+		$rv[] = array('dx', '6652');
+		$rv[] = array('bx', '6653');
+		
+		$rv[] = array('rax', '50');
+		$rv[] = array('rcx', '51');
+		$rv[] = array('rdx', '52');
+		$rv[] = array('rbx', '53');
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider testX8664Provider
+	 */
+	public function testX8664($register, $expected){
+		$instr = new X8664Push($register);
 		$opcode = unpack('H*', $instr->assemble());
 		$opcode = $opcode[1];
-		$this->assertEquals('6651', $opcode);
-		
-		$instr = new X8664Push('dx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('6652', $opcode);
-		
-		$instr = new X8664Push('bx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('6653', $opcode);
-		
-		
-		$instr = new X8664Push('rax');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('50', $opcode);
-		
-		$instr = new X8664Push('rcx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('51', $opcode);
-		
-		$instr = new X8664Push('rdx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('52', $opcode);
-		
-		$instr = new X8664Push('rbx');
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals('53', $opcode);
+		$this->assertEquals($expected, $opcode);
 	}
 	
 	/**
