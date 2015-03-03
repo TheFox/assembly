@@ -3,12 +3,12 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 use TheFox\Assembly\Assembly;
+use TheFox\Assembly\Instruction\X86_64\Mov;
 use TheFox\Assembly\Instruction\X86_64\Nop;
 use TheFox\Assembly\Instruction\X86_64\Ret;
 
 $asm = new Assembly();
-$asm->addInstruction(new Nop());
-$asm->addInstruction(new Nop());
+$asm->addInstruction(new Mov('rax', 'rbx'));
 $asm->addInstruction(new Nop());
 $asm->addInstruction(new Ret());
 
