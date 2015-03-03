@@ -9,6 +9,9 @@ class PushTest extends PHPUnit_Framework_TestCase{
 	public function testX86Provider(){
 		$rv = array();
 		
+		$rv[] = array('', '');
+		$rv[] = array('XYZ', '');
+		
 		$rv[] = array('ax', '50');
 		$rv[] = array('cx', '51');
 		$rv[] = array('dx', '52');
@@ -29,6 +32,9 @@ class PushTest extends PHPUnit_Framework_TestCase{
 	
 	public function testI386Provider(){
 		$rv = array();
+		
+		$rv[] = array('', '');
+		$rv[] = array('XYZ', '');
 		
 		$rv[] = array('ax', '6650');
 		$rv[] = array('cx', '6651');
@@ -55,6 +61,9 @@ class PushTest extends PHPUnit_Framework_TestCase{
 	
 	public function testX8664Provider(){
 		$rv = array();
+		
+		$rv[] = array('', '');
+		$rv[] = array('XYZ', '');
 		
 		$rv[] = array('ax', '6650');
 		$rv[] = array('cx', '6651');

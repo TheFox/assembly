@@ -9,6 +9,9 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	public function testX86Provider(){
 		$rv = array();
 		
+		$rv[] = array('', '');
+		$rv[] = array('XYZ', '');
+		
 		$rv[] = array('ax', '58');
 		$rv[] = array('cx', '59');
 		$rv[] = array('dx', '5a');
@@ -29,6 +32,9 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	
 	public function testI386Provider(){
 		$rv = array();
+		
+		$rv[] = array('', '');
+		$rv[] = array('XYZ', '');
 		
 		$rv[] = array('ax', '6658');
 		$rv[] = array('cx', '6659');
@@ -55,6 +61,9 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	
 	public function testX8664Provider(){
 		$rv = array();
+		
+		$rv[] = array('', '');
+		$rv[] = array('XYZ', '');
 		
 		$rv[] = array('ax', '6658');
 		$rv[] = array('cx', '6659');
