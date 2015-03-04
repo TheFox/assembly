@@ -10,7 +10,7 @@ use TheFox\Assembly\Instruction\X86_64\Pop as X8664Pop;
 
 class PopTest extends PHPUnit_Framework_TestCase{
 	
-	public function testX86Provider(){
+	public function x8086Provider(){
 		$rv = array();
 		
 		$rv[] = array('', '');
@@ -25,7 +25,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	}
 	
 	/**
-	 * @dataProvider testX86Provider
+	 * @dataProvider x8086Provider
 	 */
 	public function test8086($register, $expected){
 		$instr = new X86Pop($register);
@@ -34,7 +34,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($expected, $opcode);
 	}
 	
-	public function testI386Provider(){
+	public function i386Provider(){
 		$rv = array();
 		
 		$rv[] = array('', '');
@@ -54,7 +54,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	}
 	
 	/**
-	 * @dataProvider testI386Provider
+	 * @dataProvider i386Provider
 	 */
 	public function testI386($register, $expected){
 		$instr = new I386Pop($register);
@@ -63,7 +63,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals($expected, $opcode);
 	}
 	
-	public function testX8664Provider(){
+	public function x8664Provider(){
 		$rv = array();
 		
 		$rv[] = array('', '');
@@ -83,7 +83,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	}
 	
 	/**
-	 * @dataProvider testX8664Provider
+	 * @dataProvider x8664Provider
 	 */
 	public function testX8664($register, $expected){
 		$instr = new X8664Pop($register);
