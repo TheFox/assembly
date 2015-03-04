@@ -18,6 +18,10 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals('Assembly', Assembly::NAME);
 	}
 	
+	public function testExtensions(){
+		$this->assertTrue(extension_loaded('bcmath'));
+	}
+	
 	public function testAssembleX86(){
 		$asm = new Assembly();
 		$asm->addInstruction(new X86Nop());
