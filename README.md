@@ -1,6 +1,10 @@
 # Assembly
 Assemble x86, i386, x86_64 instructions with PHP.
 
+## Links
+- [Packagist Package](https://packagist.org/packages/thefox/assembly)
+- [Travis CI Repository](https://travis-ci.org/TheFox/assembly)
+
 ## License
 Copyright (C) 2015 Christian Mayer <http://fox21.at>
 
