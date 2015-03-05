@@ -68,9 +68,7 @@ class MovX8664Test extends MovTest{
 	 * @dataProvider bit64RegisterToRegisterProvider
 	 */
 	public function testX8664Bit64RegisterToRegister($src, $dst, $expected){
-		#$this->basicTest(new Mov($src, $dst), $expected);
+		$this->basicTest(new Mov($src, $dst), $expected);
 	}
-	
-	
 	
 }

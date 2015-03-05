@@ -3,6 +3,7 @@
 namespace TheFox\Assembly\Instruction\X86_64;
 
 use TheFox\Utilities\Num;
+use TheFox\Assembly\Instruction\X86\Mov as X86Mov;
 use TheFox\Assembly\Instruction\I386\Mov as I386Mov;
 
 class Mov extends I386Mov{
@@ -151,14 +152,16 @@ class Mov extends I386Mov{
 		elseif($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3){
 			
 			if($this->isValidRegisterSize($src, $dst)){
+				$pre = pack('H*', '48');
+				
 				$tSrc = $this->src;
 				$tDst = $this->dst;
 				
 				$tSrc = $tSrc[1].$tSrc[2];
 				$tDst = $tDst[1].$tDst[2];
 				
-				$instr = new I386Mov($tSrc, $tDst);
-				$this->setOpcode($instr->assemble());
+				$instr = new X86Mov($tSrc, $tDst);
+				$this->setOpcode($pre.$instr->assemble());
 			}
 		}
 	}
