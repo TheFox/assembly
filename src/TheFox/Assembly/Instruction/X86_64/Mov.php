@@ -16,14 +16,20 @@ class Mov extends I386Mov{
 			list($srcHigh, $srcLow) = $src;
 		}
 		*/
-		$src = strtolower($src);
-		$dst = strtolower($dst);
+		$this->src = strtolower($src);
+		$this->dst = strtolower($dst);
 		
-		if(is_numeric($src) && is_string($dst)
-			&& strlen($dst) == 2){
+		$lenSrc = strlen($this->src);
+		$isNumSrc = is_numeric($this->src);
+		$isStrSrc = is_string($this->src);
+		
+		$lenDst = strlen($this->dst);
+		$isStrDst = is_string($this->dst);
+		
+		if($isNumSrc && $isStrDst && $lenDst == 2){
 			
 			$pre = '';
-			switch($dst){
+			switch($this->dst){
 				case 'ax':
 				case 'cx':
 				case 'dx':
@@ -32,32 +38,31 @@ class Mov extends I386Mov{
 					break;
 			}
 			
-			$instr = new I386Mov($src, $dst);
+			$instr = new I386Mov($this->src, $this->dst);
 			#$this->setOpcode(pack('H*', '66').$instr->assemble());
 			$this->setOpcode($pre.$instr->assemble());
 		}
-		elseif(is_numeric($src) && is_string($dst)
-			&& strlen($dst) == 3){
+		elseif($isNumSrc && $isStrDst && $lenDst == 3){
 			$base = 0;
 			
-			print "\n\nx64: ".dechex($src).", $dst\n";
+			print "\n\nx64: ".dechex($this->src).", $dst\n";
 			
 			switch($dst[0]){
 				case 'e':
 					#print "\t 32 bit\n";
 					#$mask = ;
-					$src &= 0xffffffff;
+					$this->src &= 0xffffffff;
 					$base = 0xB8;
 					
-					#print "\t src: ".dechex($src)."\n";
-					$src = Num::be2le($src, 4);
-					$src = dechex($src);
-					$srcLen = strlen($src);
-					if($srcLen < 8){
-						$src = str_repeat('0', 8 - $srcLen).$src;
+					#print "\t src: ".dechex($this->src)."\n";
+					$this->src = Num::be2le($this->src, 4);
+					$this->src = dechex($this->src);
+					$lenSrc = strlen($this->src);
+					if($lenSrc < 8){
+						$this->src = str_repeat('0', 8 - $lenSrc).$this->src;
 					}
-					#$src = Num::be2leStr($src, 4);
-					#print "\t src: ".$src."\n";
+					#$this->src = Num::be2leStr($this->src, 4);
+					#print "\t src: ".$this->src."\n";
 					
 					break;
 				case 'r':
@@ -66,35 +71,35 @@ class Mov extends I386Mov{
 					#$mask = 0x123456789abcdefe;
 					#$base = 0x48C7C0;
 					
-					if($src & 0x8000000000000000){
+					if($this->src & 0x8000000000000000){
 						print "\t > 32bit\n";
 						$base = 0x48B8;
 					}
 					*/
 					
-					if($src <= 0x7fffffff){
+					if($this->src <= 0x7fffffff){
 						print "\t 64 bit: 32\n";
 						
-						$src &= 0xffffffff;
+						$this->src &= 0xffffffff;
 						$base = 0x48C7C0;
 						
-						#print "\t src: ".dechex($src)."\n";
-						$src = Num::be2le($src, 4);
-						$src = dechex($src);
-						$srcLen = strlen($src);
-						if($srcLen < 8){
-							$src = str_repeat('0', 8 - $srcLen).$src;
+						#print "\t src: ".dechex($this->src)."\n";
+						$this->src = Num::be2le($this->src, 4);
+						$this->src = dechex($this->src);
+						$lenSrc = strlen($this->src);
+						if($lenSrc < 8){
+							$this->src = str_repeat('0', 8 - $lenSrc).$this->src;
 						}
 					}
 					else{
 						print "\t 64 bit: 64\n";
 						
 						$base = 0x48B8;
-						$src = Num::be2le($src, 8);
-						$src = dechex($src);
-						$srcLen = strlen($src);
-						if($srcLen < 16){
-							$src = str_repeat('0', 16 - $srcLen).$src;
+						$this->src = Num::be2le($this->src, 8);
+						$this->src = dechex($this->src);
+						$lenSrc = strlen($this->src);
+						if($lenSrc < 16){
+							$this->src = str_repeat('0', 16 - $lenSrc).$this->src;
 						}
 						
 					}
@@ -122,17 +127,15 @@ class Mov extends I386Mov{
 			
 			#$base <<= $len * 8;
 			#print "\t base: ".$base."\n";
-			$opcode = dechex($base).$src;
+			$opcode = dechex($base).$this->src;
 			
 			print "\t opcode: ".$opcode."\n";
 			$this->setOpcode(pack('H*', $opcode));
-			
 		}
-		elseif(is_string($src) && is_string($dst)
-			&& strlen($src) == 2 && strlen($dst) == 2){
+		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
 			
 			$pre = '';
-			switch($dst){
+			switch($this->dst){
 				case 'ax':
 				case 'cx':
 				case 'dx':
@@ -141,18 +144,20 @@ class Mov extends I386Mov{
 					break;
 			}
 			
-			$instr = new I386Mov($src, $dst);
+			$instr = new I386Mov($this->src, $this->dst);
 			#$this->setOpcode(pack('H*', '66').$instr->assemble());
 			$this->setOpcode($pre.$instr->assemble());
 		}
-		elseif(is_string($src) && is_string($dst)
-			&& strlen($src) == 3 && strlen($dst) == 3){
+		elseif($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3){
 			
 			if($this->isValidRegisterSize($src, $dst)){
-				$src = $src[1].$src[2];
-				$dst = $dst[1].$dst[2];
+				$tSrc = $this->src;
+				$tDst = $this->dst;
 				
-				$instr = new I386Mov($src, $dst);
+				$tSrc = $tSrc[1].$tSrc[2];
+				$tDst = $tDst[1].$tDst[2];
+				
+				$instr = new I386Mov($tSrc, $tDst);
 				$this->setOpcode($instr->assemble());
 			}
 		}

@@ -8,14 +8,21 @@ use TheFox\Assembly\Instruction\X86\Mov as X86Mov;
 class Mov extends X86Mov{
 	
 	public function __construct($src, $dst){
-		$src = strtolower($src);
-		$dst = strtolower($dst);
+		$this->src = strtolower($src);
+		$this->dst = strtolower($dst);
 		
-		if(is_numeric($src) && is_string($dst)
-			&& strlen($dst) == 2){
+		$lenSrc = strlen($this->src);
+		$isNumSrc = is_numeric($this->src);
+		$isStrSrc = is_string($this->src);
+		
+		$lenDst = strlen($this->dst);
+		$isNumDst = is_numeric($this->dst);
+		$isStrDst = is_string($this->dst);
+		
+		if($isNumSrc && $isStrDst && $lenDst == 2){
 			
 			$pre = '';
-			switch($dst){
+			switch($this->dst){
 				case 'ax':
 				case 'cx':
 				case 'dx':
@@ -24,16 +31,15 @@ class Mov extends X86Mov{
 					break;
 			}
 			
-			$instr = new X86Mov($src, $dst);
+			$instr = new X86Mov($this->src, $this->dst);
 			$this->setOpcode($pre.$instr->assemble());
 		}
-		elseif(is_numeric($src) && is_string($dst)
-			&& strlen($dst) == 3){
+		elseif($isNumSrc && $isStrDst && $lenDst == 3){
 			$mask = 0xffffffff;
 			$base = 0xB8;
 			$len = 4;
 			
-			switch($dst[1]){
+			switch($this->dst[1]){
 				case 'a':
 					$base += 0;
 					break;
@@ -48,19 +54,18 @@ class Mov extends X86Mov{
 					break;
 			}
 			
-			$src &= $mask;
-			$src = Num::be2le($src, $len);
+			$this->src &= $mask;
+			$this->src = Num::be2le($this->src, $len);
 			
 			$base <<= $len * 8;
-			$opcode = dechex($base | $src);
+			$opcode = dechex($base | $this->src);
 			
 			$this->setOpcode(pack('H*', $opcode));
 		}
-		elseif(is_string($src) && is_string($dst)
-			&& strlen($src) == 2 && strlen($dst) == 2){
+		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
 			
 			$pre = '';
-			switch($dst){
+			switch($this->dst){
 				case 'ax':
 				case 'cx':
 				case 'dx':
@@ -69,37 +74,47 @@ class Mov extends X86Mov{
 					break;
 			}
 			
-			$instr = new X86Mov($src, $dst);
+			$instr = new X86Mov($this->src, $this->dst);
 			$this->setOpcode($pre.$instr->assemble());
 		}
-		elseif(is_string($src) && is_string($dst)
-			&& strlen($src) == 3 && strlen($dst) == 3){
+		elseif($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3){
 			
-			if($this->isValidRegisterSize($src, $dst)){
-				$src = $src[1].$src[2];
-				$dst = $dst[1].$dst[2];
+			if($this->isValidRegisterSize()){
+				#\Doctrine\Common\Util\Debug::dump($this->src);
+				$tSrc = $this->src;
+				$tDst = $this->dst;
 				
-				$instr = new X86Mov($src, $dst);
+				$tSrc = $tSrc[1].$tSrc[2];
+				$tDst = $tDst[1].$tDst[2];
+				
+				$instr = new X86Mov($tSrc, $tDst);
 				$this->setOpcode($instr->assemble());
 			}
 		}
 	}
 	
-	public function isValidRegisterSize($src, $dst){
+	public function isValidRegisterSize($tSrc = null, $tDst = null){
 		$rv = false;
 		$func = __FUNCTION__;
 		
-		$srcLen = strlen($src);
-		$dstLen = strlen($dst);
-		
-		if($srcLen == 2 && $dstLen == 2){
-			$rv = parent::$func($src, $dst);
+		if($tSrc === null){
+			$tSrc = $this->src;
 		}
-		elseif($srcLen == 3 && $dstLen == 3){
-			if($src[0] == $dst[0]){
-				$src = $src[1].$src[2];
-				$dst = $dst[1].$dst[2];
-				$rv = parent::$func($src, $dst);
+		if($tDst === null){
+			$tDst = $this->dst;
+		}
+		
+		$sLen = strlen($tSrc);
+		$dLen = strlen($tDst);
+		
+		if($sLen == 2 && $dLen == 2){
+			$rv = parent::$func($tSrc, $tDst);
+		}
+		elseif($sLen == 3 && $dLen == 3){
+			if($tSrc[0] == $tDst[0]){
+				$tSrc = $tSrc[1].$tSrc[2];
+				$tDst = $tDst[1].$tDst[2];
+				$rv = parent::$func($tSrc, $tDst);
 			}
 		}
 		

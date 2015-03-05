@@ -8,17 +8,20 @@ use TheFox\Utilities\Num;
 
 class Mov extends Instruction{
 	
+	public $src;
+	public $dst;
+	
 	public function __construct($src, $dst){
-		$src = strtolower($src);
-		$dst = strtolower($dst);
+		$this->src = strtolower($src);
+		$this->dst = strtolower($dst);
 		
-		if(is_numeric($src) && is_string($dst)
-			&& strlen($dst) == 2){
+		if(is_numeric($this->src) && is_string($this->dst)
+			&& strlen($this->dst) == 2){
 			$mask = 0;
 			$base = 0xB0;
 			$len = 1;
 			
-			switch($dst[1]){
+			switch($this->dst[1]){
 				case 'l':
 					$mask = 0xff;
 					$base += 0;
@@ -33,7 +36,7 @@ class Mov extends Instruction{
 					$len = 2;
 					break;
 			}
-			switch($dst[0]){
+			switch($this->dst[0]){
 				case 'a':
 					$base += 0;
 					break;
@@ -48,20 +51,20 @@ class Mov extends Instruction{
 					break;
 			}
 			
-			$src &= $mask;
-			$src = Num::be2le($src, $len);
+			$this->src &= $mask;
+			$this->src = Num::be2le($this->src, $len);
 			
 			$base <<= $len * 8;
-			$opcode = dechex($base | $src);
+			$opcode = dechex($base | $this->src);
 			
 			$this->setOpcode(pack('H*', $opcode));
 		}
-		elseif(is_string($src) && is_string($dst)
-			&& strlen($src) == 2 && strlen($dst) == 2){
+		elseif(is_string($this->src) && is_string($this->dst)
+			&& strlen($this->src) == 2 && strlen($this->dst) == 2){
 			
-			if($this->isValidRegisterSize($src, $dst)){
+			if($this->isValidRegisterSize()){
 				$base = 0x8800;
-				switch($src[1]){
+				switch($this->src[1]){
 					case 'x':
 						$base += 0x100;
 					case 'l':
@@ -71,7 +74,7 @@ class Mov extends Instruction{
 						$base += 0xe0;
 						break;
 				}
-				switch($src[0]){
+				switch($this->src[0]){
 					case 'a':
 						$base += 0;
 						break;
@@ -85,7 +88,7 @@ class Mov extends Instruction{
 						$base += 0x18;
 						break;
 				}
-				switch($dst[1]){
+				switch($this->dst[1]){
 					case 'l':
 						$base += 0;
 						break;
@@ -93,7 +96,7 @@ class Mov extends Instruction{
 						$base += 4;
 						break;
 				}
-				switch($dst[0]){
+				switch($this->dst[0]){
 					case 'a':
 						$base += 0;
 						break;
@@ -114,14 +117,21 @@ class Mov extends Instruction{
 		}
 	}
 	
-	public function isValidRegisterSize($src, $dst){
+	public function isValidRegisterSize($tSrc = null, $tDst = null){
 		$rv = false;
 		
-		if($src[1] == 'x' && $dst[1] == 'x'){
+		if($tSrc === null){
+			$tSrc = $this->src;
+		}
+		if($tDst === null){
+			$tDst = $this->dst;
+		}
+		
+		if($tSrc[1] == 'x' && $tDst[1] == 'x'){
 			$rv = true;
 		}
-		elseif(($src[1] == 'l' || $src[1] == 'h')
-			&& ($dst[1] == 'l' || $dst[1] == 'h')){
+		elseif(($tSrc[1] == 'l' || $tSrc[1] == 'h')
+			&& ($tDst[1] == 'l' || $tDst[1] == 'h')){
 			$rv = true;
 		}
 		
