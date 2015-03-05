@@ -418,16 +418,16 @@ class MovTest extends PHPUnit_Framework_TestCase{
 		$rv = array();
 		
 		$rv[] = array(0, 'rax', '48c7c000000000');
-		$rv[] = array(0x7f, 'rax', '');
-		$rv[] = array(0x80, 'rax', '');
-		$rv[] = array(0xff, 'rax', '');
-		$rv[] = array(0x100, 'rax', '');
-		$rv[] = array(0x102, 'rax', '');
-		$rv[] = array(0x400, 'rax', '');
-		$rv[] = array(0x47f, 'rax', '');
-		$rv[] = array(0xfffe, 'rax', '');
-		$rv[] = array(0xffff, 'rax', '');
-		$rv[] = array(0x10000, 'rax', '');
+		#$rv[] = array(0x7f, 'rax', '');
+		#$rv[] = array(0x80, 'rax', '');
+		#$rv[] = array(0xff, 'rax', '');
+		#$rv[] = array(0x100, 'rax', '');
+		#$rv[] = array(0x102, 'rax', '');
+		#$rv[] = array(0x400, 'rax', '');
+		#$rv[] = array(0x47f, 'rax', '');
+		#$rv[] = array(0xfffe, 'rax', '');
+		#$rv[] = array(0xffff, 'rax', '');
+		#$rv[] = array(0x10000, 'rax', '');
 		#$rv[] = array(0x12345678, 'rax', '48c7c078563412');
 		#$rv[] = array(0xffffffff, 'rax', '48c7c078563412');
 		#$rv[] = array(0x123456789abcdefe, 'rax', '48b8fedebc9a78563412');
