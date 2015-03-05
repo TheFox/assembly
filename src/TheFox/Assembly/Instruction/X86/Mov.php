@@ -127,7 +127,7 @@ class Mov extends Instruction{
 			$tDst = $this->dst;
 		}
 		
-		if($tSrc[1] == 'x' && $tDst[1] == 'x'){
+		if($tSrc[1] == $tDst[1]){
 			$rv = true;
 		}
 		elseif(($tSrc[1] == 'l' || $tSrc[1] == 'h')
