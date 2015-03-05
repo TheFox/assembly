@@ -51,18 +51,15 @@ class Mov extends I386Mov{
 			switch($dst[0]){
 				case 'e':
 					#print "\t 32 bit\n";
-					#$mask = ;
 					$this->src &= 0xffffffff;
 					$base = 0xB8;
 					
-					#print "\t src: ".dechex($this->src)."\n";
 					$this->src = Num::be2le($this->src, 4);
 					$this->src = dechex($this->src);
 					$lenSrc = strlen($this->src);
 					if($lenSrc < 8){
 						$this->src = str_repeat('0', 8 - $lenSrc).$this->src;
 					}
-					#$this->src = Num::be2leStr($this->src, 4);
 					#print "\t src: ".$this->src."\n";
 					
 					break;
@@ -146,7 +143,6 @@ class Mov extends I386Mov{
 			}
 			
 			$instr = new I386Mov($this->src, $this->dst);
-			#$this->setOpcode(pack('H*', '66').$instr->assemble());
 			$this->setOpcode($pre.$instr->assemble());
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3){
