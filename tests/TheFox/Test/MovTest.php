@@ -194,6 +194,18 @@ class MovTest extends PHPUnit_Framework_TestCase{
 		return $rv;
 	}
 	
+	public function bit8IsValidRegisterSizeProvider(){
+		$rv = array();
+		
+		$rv[] = array('al', 'al', true);
+		$rv[] = array('al', 'bl', true);
+		$rv[] = array('al', 'ah', true);
+		$rv[] = array('bl', 'ah', true);
+		$rv[] = array('ah', 'al', true);
+		
+		return $rv;
+	}
+	
 	public function bit16ValueToRegisterProvider(){
 		$rv = array();
 		
@@ -270,6 +282,22 @@ class MovTest extends PHPUnit_Framework_TestCase{
 		$rv[] = array('bx', 'cx', '89d9');
 		$rv[] = array('bx', 'dx', '89da');
 		$rv[] = array('bx', 'bx', '89db');
+		
+		return $rv;
+	}
+	
+	public function bit16IsValidRegisterSizeProvider(){
+		$rv = array();
+		
+		$rv[] = array('ax', 'ax', true);
+		$rv[] = array('ax', 'bx', true);
+		
+		$rv[] = array('ax', 'al', false);
+		$rv[] = array('ax', 'ah', false);
+		$rv[] = array('ax', 'bl', false);
+		$rv[] = array('ax', 'bh', false);
+		$rv[] = array('al', 'ax', false);
+		$rv[] = array('ah', 'ax', false);
 		
 		return $rv;
 	}
@@ -370,21 +398,22 @@ class MovTest extends PHPUnit_Framework_TestCase{
 		$rv = array();
 		
 		$rv[] = array(0, 'rax', '48c7c000000000');
-		$rv[] = array(0x7f, 'rax', '48c7c0');
-		$rv[] = array(0x80, 'rax', '48c7c0');
-		$rv[] = array(0xff, 'rax', '48c7c0');
-		$rv[] = array(0x100, 'rax', '48c7c0');
-		$rv[] = array(0x102, 'rax', '48c7c0');
-		$rv[] = array(0x400, 'rax', '48c7c0');
-		$rv[] = array(0x47f, 'rax', '48c7c0');
-		$rv[] = array(0xfffe, 'rax', '48c7c0');
-		$rv[] = array(0xffff, 'rax', '48c7c0');
-		$rv[] = array(0x10000, 'rax', '48c7c0');
-		$rv[] = array(0x12345678, 'rax', '48c7c078563412');
-		$rv[] = array(0xffffffff, 'rax', '48c7c078563412');
-		$rv[] = array(0x123456789abcdefe, 'rax', '48b8fedebc9a78563412');
-		$rv[] = array(0xffffffffffffffff, 'rax', '48b8fedebc9a78563412');
+		$rv[] = array(0x7f, 'rax', '');
+		$rv[] = array(0x80, 'rax', '');
+		$rv[] = array(0xff, 'rax', '');
+		$rv[] = array(0x100, 'rax', '');
+		$rv[] = array(0x102, 'rax', '');
+		$rv[] = array(0x400, 'rax', '');
+		$rv[] = array(0x47f, 'rax', '');
+		$rv[] = array(0xfffe, 'rax', '');
+		$rv[] = array(0xffff, 'rax', '');
+		$rv[] = array(0x10000, 'rax', '');
+		#$rv[] = array(0x12345678, 'rax', '48c7c078563412');
+		#$rv[] = array(0xffffffff, 'rax', '48c7c078563412');
+		#$rv[] = array(0x123456789abcdefe, 'rax', '48b8fedebc9a78563412');
+		#$rv[] = array(0xffffffffffffffff, 'rax', '48b8fedebc9a78563412');
 		
+		/*
 		$rv[] = array(0, 'rcx', '48c7c1');
 		$rv[] = array(0x7f, 'rcx', '48c7c1');
 		$rv[] = array(0x80, 'rcx', '48c7c1');
@@ -432,6 +461,7 @@ class MovTest extends PHPUnit_Framework_TestCase{
 		$rv[] = array(0xffffffff, 'rbx', '48c7c3');
 		$rv[] = array(0x123456789abcdefe, 'rbx', '48c7c3');
 		$rv[] = array(0xffffffffffffffff, 'rbx', '48c7c3');
+		*/
 		
 		return $rv;
 	}
