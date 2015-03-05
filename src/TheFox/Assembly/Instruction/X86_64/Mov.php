@@ -148,7 +148,16 @@ class Mov extends I386Mov{
 		elseif($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3){
 			
 			if($this->isValidRegisterSize($src, $dst)){
-				$pre = pack('H*', '48');
+				$pre = '';
+				
+				switch($this->src[0]){
+					case 'e':
+						
+						break;
+					case 'r':
+						$pre = pack('H*', '48');
+						break;
+				}
 				
 				$tSrc = $this->src;
 				$tDst = $this->dst;
