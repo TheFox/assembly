@@ -394,6 +394,26 @@ class MovTest extends PHPUnit_Framework_TestCase{
 		return $rv;
 	}
 	
+	public function bit32IsValidRegisterSizeProvider(){
+		$rv = array();
+		
+		$rv[] = array('eax', 'eax', true);
+		$rv[] = array('eax', 'ebx', true);
+		
+		$rv[] = array('eax', 'al', false);
+		$rv[] = array('eax', 'ah', false);
+		$rv[] = array('eax', 'bl', false);
+		$rv[] = array('eax', 'bh', false);
+		$rv[] = array('al', 'eax', false);
+		$rv[] = array('ah', 'eax', false);
+		
+		$rv[] = array('eax', 'ax', false);
+		$rv[] = array('eax', 'bx', false);
+		$rv[] = array('ax', 'eax', false);
+		
+		return $rv;
+	}
+	
 	public function bit64ValueToRegisterProvider(){
 		$rv = array();
 		
@@ -487,6 +507,30 @@ class MovTest extends PHPUnit_Framework_TestCase{
 		$rv[] = array('rbx', 'rax', '4889d8');
 		$rv[] = array('rbx', 'rcx', '4889d9');
 		$rv[] = array('rbx', 'rdx', '4889da');
+		
+		return $rv;
+	}
+	
+	public function bit64IsValidRegisterSizeProvider(){
+		$rv = array();
+		
+		$rv[] = array('rax', 'rax', true);
+		$rv[] = array('rax', 'rbx', true);
+		
+		$rv[] = array('rax', 'al', false);
+		$rv[] = array('rax', 'ah', false);
+		$rv[] = array('rax', 'bl', false);
+		$rv[] = array('rax', 'bh', false);
+		$rv[] = array('al', 'rax', false);
+		$rv[] = array('ah', 'rax', false);
+		
+		$rv[] = array('rax', 'ax', false);
+		$rv[] = array('rax', 'bx', false);
+		$rv[] = array('ax', 'rax', false);
+		
+		$rv[] = array('rax', 'eax', false);
+		$rv[] = array('rax', 'ebx', false);
+		$rv[] = array('eax', 'rax', false);
 		
 		return $rv;
 	}

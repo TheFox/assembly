@@ -73,4 +73,12 @@ class MovI386Test extends MovTest{
 		$this->assertEquals($expected, $instr->isValidRegisterSize());
 	}
 	
+	/**
+	 * @dataProvider bit32IsValidRegisterSizeProvider
+	 */
+	public function testI386Bit32IsValidRegisterSize($src, $dst, $expected){
+		$instr = new Mov($src, $dst);
+		$this->assertEquals($expected, $instr->isValidRegisterSize());
+	}
+	
 }

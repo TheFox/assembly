@@ -71,4 +71,36 @@ class MovX8664Test extends MovTest{
 		$this->basicTest(new Mov($src, $dst), $expected);
 	}
 	
+	/**
+	 * @dataProvider bit8IsValidRegisterSizeProvider
+	 */
+	public function testX8664Bit8IsValidRegisterSize($src, $dst, $expected){
+		$instr = new Mov($src, $dst);
+		$this->assertEquals($expected, $instr->isValidRegisterSize());
+	}
+	
+	/**
+	 * @dataProvider bit16IsValidRegisterSizeProvider
+	 */
+	public function testX8664Bit16IsValidRegisterSize($src, $dst, $expected){
+		$instr = new Mov($src, $dst);
+		$this->assertEquals($expected, $instr->isValidRegisterSize());
+	}
+	
+	/**
+	 * @dataProvider bit32IsValidRegisterSizeProvider
+	 */
+	public function testX8664Bit32IsValidRegisterSize($src, $dst, $expected){
+		$instr = new Mov($src, $dst);
+		$this->assertEquals($expected, $instr->isValidRegisterSize());
+	}
+	
+	/**
+	 * @dataProvider bit64IsValidRegisterSizeProvider
+	 */
+	public function testX8664Bit64IsValidRegisterSize($src, $dst, $expected){
+		$instr = new Mov($src, $dst);
+		$this->assertEquals($expected, $instr->isValidRegisterSize());
+	}
+	
 }
