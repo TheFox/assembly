@@ -9,6 +9,7 @@ The preferred method of installation is via [Packagist](https://packagist.org/pa
 ## Links
 - [Packagist Package](https://packagist.org/packages/thefox/assembly)
 - [Travis CI Repository](https://travis-ci.org/TheFox/assembly)
+- [Intel 80x86 Assembly Language OpCodes](http://www.mathemainzel.info/files/x86asmref.html)
 
 ## License
 Copyright (C) 2015 Christian Mayer <http://fox21.at>
