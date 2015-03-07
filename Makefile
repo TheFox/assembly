@@ -9,7 +9,7 @@ PHPCS_REPORT = --report=full --report-width=160
 PHPCS_SOURCE = src tests
 PHPUNIT = vendor/bin/phpunit
 COMPOSER = ./composer.phar
-COMPOSER_DEV ?= --dev
+COMPOSER_DEV ?= 
 
 
 .PHONY: all install update test test_phpcs test_phpunit test_phpunit_cc phpcbf_run clean clean_all
