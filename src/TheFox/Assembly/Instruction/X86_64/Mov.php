@@ -46,7 +46,7 @@ class Mov extends I386Mov{
 		elseif($isNumSrc && $isStrDst && $lenDst == 3){
 			$base = 0;
 			
-			print "\n\nx64: ".dechex($this->src).", $dst\n";
+			#print "\n\nx64: ".dechex($this->src).", $dst\n";
 			
 			switch($dst[0]){
 				case 'e':
@@ -63,34 +63,16 @@ class Mov extends I386Mov{
 					#print "\t src: ".$this->src."\n";
 					
 					break;
-				case 'r':
-					print "\t 64 bit\n";
-					/*$mask = 0xffffffffffffffff;
-					#$mask = 0x123456789abcdefe;
-					#$base = 0x48C7C0;
+				case 'r':	
 					
-					if($this->src & 0x8000000000000000){
-						print "\t > 32bit\n";
-						$base = 0x48B8;
-					}
-					*/
 					
-					if($this->src <= 0x7fffffff){
-						print "\t 64 bit: 32\n";
-						
-						$this->src &= 0xffffffff;
-						$base = 0x48C7C0;
-						
-						#print "\t src: ".dechex($this->src)."\n";
-						$this->src = Num::be2le($this->src, 4);
-						$this->src = dechex($this->src);
-						$lenSrc = strlen($this->src);
-						if($lenSrc < 8){
-							$this->src = str_repeat('0', 8 - $lenSrc).$this->src;
-						}
-					}
-					else{
-						print "\t 64 bit: 64\n";
+					$srcHigh = ($this->src >> 32) & 0xffffffff;
+					$srcLow = $this->src & 0xffffffff;
+					
+					#print "\t 64 bit h=".dechex($srcHigh)." l=".dechex($srcLow)."\n";
+					
+					if($this->src > 0x7fffffff | $srcHigh){
+						#print "\t 64 bit: 64\n";
 						
 						$base = 0x48B8;
 						$this->src = Num::be2le($this->src, 8);
@@ -99,8 +81,31 @@ class Mov extends I386Mov{
 						if($lenSrc < 16){
 							$this->src = str_repeat('0', 16 - $lenSrc).$this->src;
 						}
-						
 					}
+					else{
+						#print "\t 64 bit: 32\n";
+						
+						$base = 0x48C7C0;
+						$this->src = $srcLow;
+						
+						#print "\t src: ".dechex($this->src)."\n";
+						$this->src = Num::be2le($this->src, 4);
+						$this->src = dechex($this->src);
+						$lenSrc = strlen($this->src);
+						if($lenSrc < 8){
+							$this->src = str_repeat('0', 8 - $lenSrc).$this->src;
+						}
+						
+						#print "\t 64 bit: ".$this->src."\n";
+					}
+					
+					/*if($this->src <= 0x7fffffff){
+					#if((($this->src >> 32) & 0xffffffff) == 0){
+					#if(($this->src & 0x7fffffff) != 0){
+					#if($srcHigh == 0){
+					}
+					else{
+					}*/
 					
 					break;
 			}
@@ -127,7 +132,7 @@ class Mov extends I386Mov{
 			#print "\t base: ".$base."\n";
 			$opcode = dechex($base).$this->src;
 			
-			print "\t opcode: ".$opcode."\n";
+			#print "\t opcode: ".$opcode."\n";
 			$this->setOpcode(pack('H*', $opcode));
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
