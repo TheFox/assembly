@@ -17,17 +17,17 @@ class Mov extends Instruction{
 		
 		if(is_numeric($this->src) && is_string($this->dst)
 			&& strlen($this->dst) == 2){
-			$mask = 0;
+			$mask = 0xff;
 			$base = 0xB0;
 			$len = 1;
 			
 			switch($this->dst[1]){
-				case 'l':
+				/*case 'l':
 					$mask = 0xff;
 					$base += 0;
-					break;
+					break;*/
 				case 'h':
-					$mask = 0xff;
+					#$mask = 0xff;
 					$base += 4;
 					break;
 				case 'x':
@@ -37,11 +37,11 @@ class Mov extends Instruction{
 					break;
 			}
 			switch($this->dst[0]){
-				case 'a':
+				/*case 'a':
 					$base += 0;
-					break;
+					break;*/
 				case 'c':
-					$base += 1;
+					$base++;
 					break;
 				case 'd':
 					$base += 2;
@@ -75,9 +75,9 @@ class Mov extends Instruction{
 						break;
 				}
 				switch($this->src[0]){
-					case 'a':
+					/*case 'a':
 						$base += 0;
-						break;
+						break;*/
 					case 'c':
 						$base += 8;
 						break;
@@ -89,19 +89,19 @@ class Mov extends Instruction{
 						break;
 				}
 				switch($this->dst[1]){
-					case 'l':
+					/*case 'l':
 						$base += 0;
-						break;
+						break;*/
 					case 'h':
 						$base += 4;
 						break;
 				}
 				switch($this->dst[0]){
-					case 'a':
+					/*case 'a':
 						$base += 0;
-						break;
+						break;*/
 					case 'c':
-						$base += 1;
+						$base++;
 						break;
 					case 'd':
 						$base += 2;

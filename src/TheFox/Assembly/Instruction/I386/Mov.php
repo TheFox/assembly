@@ -40,11 +40,11 @@ class Mov extends X86Mov{
 			$len = 4;
 			
 			switch($this->dst[1]){
-				case 'a':
+				/*case 'a':
 					$base += 0;
-					break;
+					break;*/
 				case 'c':
-					$base += 1;
+					$base++;
 					break;
 				case 'd':
 					$base += 2;

@@ -33,7 +33,6 @@ class Pop extends I386Pop{
 			case 'edx':
 			case 'ebx':
 				throw new UnexpectedValueException('exx registered not allowed in X86_64.', 1);
-				break;
 		}
 		
 		$instr = new I386Pop($register);

@@ -9,14 +9,6 @@ use TheFox\Assembly\Instruction\I386\Mov as I386Mov;
 class Mov extends I386Mov{
 	
 	public function __construct($src, $dst){
-		/*$src64 = false;
-		$srcHigh = null;
-		$srcLow = null;
-		if(is_array($src)){
-			$src64 = true;
-			list($srcHigh, $srcLow) = $src;
-		}
-		*/
 		$this->src = strtolower($src);
 		$this->dst = strtolower($dst);
 		
@@ -30,17 +22,16 @@ class Mov extends I386Mov{
 		if($isNumSrc && $isStrDst && $lenDst == 2){
 			
 			$pre = '';
-			switch($this->dst){
+			/*switch($this->dst){
 				case 'ax':
 				case 'cx':
 				case 'dx':
 				case 'bx':
-					#$pre = pack('H*', '66');
+					$pre = pack('H*', '66');
 					break;
-			}
+			}*/
 			
 			$instr = new I386Mov($this->src, $this->dst);
-			#$this->setOpcode(pack('H*', '66').$instr->assemble());
 			$this->setOpcode($pre.$instr->assemble());
 		}
 		elseif($isNumSrc && $isStrDst && $lenDst == 3){
@@ -99,53 +90,37 @@ class Mov extends I386Mov{
 						#print "\t 64 bit: ".$this->src."\n";
 					}
 					
-					/*if($this->src <= 0x7fffffff){
-					#if((($this->src >> 32) & 0xffffffff) == 0){
-					#if(($this->src & 0x7fffffff) != 0){
-					#if($srcHigh == 0){
-					}
-					else{
-					}*/
-					
 					break;
 			}
 			switch($dst[1]){
-				case 'a':
-					#print "\t x64: a\n";
+				/*case 'a':
 					$base += 0;
-					break;
+					break;*/
 				case 'c':
-					#print "\t x64: c\n";
-					$base += 1;
+					$base++;
 					break;
 				case 'd':
-					#print "\t x64: d\n";
 					$base += 2;
 					break;
 				case 'b':
-					#print "\t x64: b\n";
 					$base += 3;
 					break;
 			}
 			
-			#$base <<= $len * 8;
-			#print "\t base: ".$base."\n";
 			$opcode = dechex($base).$this->src;
-			
-			#print "\t opcode: ".$opcode."\n";
 			$this->setOpcode(pack('H*', $opcode));
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
 			
 			$pre = '';
-			switch($this->dst){
+			/*switch($this->dst){
 				case 'ax':
 				case 'cx':
 				case 'dx':
 				case 'bx':
-					#$pre = pack('H*', '66');
+					$pre = pack('H*', '66');
 					break;
-			}
+			}*/
 			
 			$instr = new I386Mov($this->src, $this->dst);
 			$this->setOpcode($pre.$instr->assemble());
@@ -156,9 +131,8 @@ class Mov extends I386Mov{
 				$pre = '';
 				
 				switch($this->src[0]){
-					case 'e':
-						
-						break;
+					/*case 'e':
+						break;*/
 					case 'r':
 						$pre = pack('H*', '48');
 						break;

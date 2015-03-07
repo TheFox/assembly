@@ -48,7 +48,6 @@ class Push extends I386Push{
 			case 'edx':
 			case 'ebx':
 				throw new UnexpectedValueException('exx registered not allowed in X86_64.', 1);
-				break;
 		}
 	}
 	
