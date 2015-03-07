@@ -1,6 +1,11 @@
 # Assembly
 Assemble x86, i386, x86_64 instructions with PHP.
 
+## Installation
+The preferred method of installation is via [Packagist](https://packagist.org/packages/thefox/assembly) and [Composer](https://getcomposer.org/). Run the following command to install the package and add it as a requirement to composer.json:
+
+	composer.phar require "thefox/assembly=~0.1"
+
 ## Links
 - [Packagist Package](https://packagist.org/packages/thefox/assembly)
 - [Travis CI Repository](https://travis-ci.org/TheFox/assembly)
