@@ -9,8 +9,10 @@ class Push extends X86Push{
 	public function __construct($register){
 		$register = strtolower($register);
 		
-		$preC = pack('H*', '66');
 		$pre = '';
+		
+		/*$preC = pack('H*', '66');
+		
 		
 		switch($register){
 			case 'ax':
@@ -40,6 +42,14 @@ class Push extends X86Push{
 			case 'ebx':
 				$register = 'bx';
 				break;
+		}*/
+		
+		$lenRegister = strlen($register);
+		if($lenRegister == 2){
+			$pre = pack('H*', '66');
+		}
+		elseif($lenRegister == 3 && $register[0] == 'e'){
+			$register = $register[1].$register[2];
 		}
 		
 		$instr = new X86Push($register);

@@ -11,28 +11,15 @@ class Pop extends I386Pop{
 	public function __construct($register){
 		$register = strtolower($register);
 		
-		switch($register){
-			case 'rax':
-				$register = 'eax';
-				break;
-			
-			case 'rcx':
-				$register = 'ecx';
-				break;
-			
-			case 'rdx':
-				$register = 'edx';
-				break;
-			
-			case 'rbx':
-				$register = 'ebx';
-				break;
-			
-			case 'eax':
-			case 'ecx':
-			case 'edx':
-			case 'ebx':
-				throw new UnexpectedValueException('exx registered not allowed in X86_64.', 1);
+		$lenRegister = strlen($register);
+		if($lenRegister == 3){
+			switch($register[0]){
+				case 'e':
+					throw new UnexpectedValueException('exx registered not allowed in X86_64.', 1);
+				case 'r':
+					$register = 'e'.$register[1].$register[2];
+					break;
+			}
 		}
 		
 		$instr = new I386Pop($register);

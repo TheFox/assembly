@@ -9,37 +9,14 @@ class Pop extends X86Pop{
 	public function __construct($register){
 		$register = strtolower($register);
 		
-		$preC = pack('H*', '66');
 		$pre = '';
 		
-		switch($register){
-			case 'ax':
-				$pre = $preC;
-				break;
-			case 'eax':
-				$register = 'ax';
-				break;
-			
-			case 'cx':
-				$pre = $preC;
-				break;
-			case 'ecx':
-				$register = 'cx';
-				break;
-			
-			case 'dx':
-				$pre = $preC;
-				break;
-			case 'edx':
-				$register = 'dx';
-				break;
-			
-			case 'bx':
-				$pre = $preC;
-				break;
-			case 'ebx':
-				$register = 'bx';
-				break;
+		$lenRegister = strlen($register);
+		if($lenRegister == 2){
+			$pre = pack('H*', '66');
+		}
+		elseif($lenRegister == 3 && $register[0] == 'e'){
+			$register = $register[1].$register[2];
 		}
 		
 		$instr = new X86Pop($register);
