@@ -4,7 +4,7 @@
 			"path": ".",
 			"name": "Assembly",
 			"folder_exclude_patterns": [ "log", "vendor" ],
-			"file_exclude_patterns": [ "composer.phar" ]
+			"file_exclude_patterns": [ ]
 		}
 	]
 }
