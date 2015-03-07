@@ -19,20 +19,11 @@ class MovTest extends PHPUnit_Framework_TestCase{
 	public function basicProvider(){
 		$rv = array();
 		
-		# TODO
 		$rv[] = array('', '', '');
-		#$rv[] = array(0, 'XYZ', '');
-		#$rv[] = array('XYZ', 0, '');
-		#$rv[] = array('XYZ', 'XYZ', '');
-		#$rv[] = array('XYZ', 'al', '');
-		
-		# TODO
-		#$rv[] = array('ax', 'ebx', '');
-		#$rv[] = array('ebx', 'ax', '');
-		#$rv[] = array('ax', 'rbx', '');
-		#$rv[] = array('rbx', 'ax', '');
-		#$rv[] = array('eax', 'rbx', '');
-		#$rv[] = array('rbx', 'eax', '');
+		/*$rv[] = array(0, 'XYZ', '');
+		$rv[] = array('XYZ', 0, '');
+		$rv[] = array('XYZ', 'XYZ', '');
+		$rv[] = array('XYZ', 'al', '');*/
 		
 		return $rv;
 	}
