@@ -4,10 +4,6 @@ namespace TheFox\Test;
 
 use PHPUnit_Framework_TestCase;
 
-#use TheFox\Assembly\Instruction\X86\Mov as X86Mov;
-#use TheFox\Assembly\Instruction\I386\Mov as I386Mov;
-#use TheFox\Assembly\Instruction\X86_64\Mov as X8664Mov;
-
 class MovTest extends PHPUnit_Framework_TestCase{
 	
 	public function basicTest($instr, $expected){
