@@ -5,8 +5,8 @@ namespace TheFox\Test;
 use PHPUnit_Framework_TestCase;
 
 use TheFox\Assembly\Assembly;
-use TheFox\Assembly\Instruction\X86\Nop as X86Nop;
-use TheFox\Assembly\Instruction\X86\Ret as X86Ret;
+use TheFox\Assembly\Instruction\X86\Nop as X8086Nop;
+use TheFox\Assembly\Instruction\X86\Ret as X8086Ret;
 use TheFox\Assembly\Instruction\I386\Nop as I386Nop;
 use TheFox\Assembly\Instruction\I386\Ret as I386Ret;
 use TheFox\Assembly\Instruction\X86_64\Nop as X8664Nop;
@@ -22,10 +22,10 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$this->assertTrue(extension_loaded('bcmath'));
 	}
 	
-	public function testAssembleX86(){
+	public function testAssemble8086(){
 		$asm = new Assembly();
-		$asm->addInstruction(new X86Nop());
-		$asm->addInstruction(new X86Ret());
+		$asm->addInstruction(new X8086Nop());
+		$asm->addInstruction(new X8086Ret());
 		
 		$opcode = unpack('H*', $asm->assemble());
 		$opcode = $opcode[1];
