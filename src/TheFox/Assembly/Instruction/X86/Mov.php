@@ -15,8 +15,15 @@ class Mov extends Instruction{
 		$this->src = strtolower($src);
 		$this->dst = strtolower($dst);
 		
-		if(is_numeric($this->src) && is_string($this->dst)
-			&& strlen($this->dst) == 2){
+		$lenSrc = strlen($this->src);
+		$isNumSrc = is_numeric($this->src);
+		$isStrSrc = is_string($this->src);
+		
+		$lenDst = strlen($this->dst);
+		#$isNumDst = is_numeric($this->dst);
+		$isStrDst = is_string($this->dst);
+		
+		if($isNumSrc && $isStrDst && $lenDst == 2){
 			$mask = 0xff;
 			$base = 0xB0;
 			$len = 1;
@@ -59,8 +66,7 @@ class Mov extends Instruction{
 			
 			$this->setOpcode(pack('H*', $opcode));
 		}
-		elseif(is_string($this->src) && is_string($this->dst)
-			&& strlen($this->src) == 2 && strlen($this->dst) == 2){
+		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
 			
 			if($this->isValidRegisterSize()){
 				$base = 0x8800;
