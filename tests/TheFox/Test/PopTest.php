@@ -2,13 +2,11 @@
 
 namespace TheFox\Test;
 
-use PHPUnit_Framework_TestCase;
-
 use TheFox\Assembly\Instruction\X86\Pop as X8086Pop;
 use TheFox\Assembly\Instruction\I386\Pop as I386Pop;
 use TheFox\Assembly\Instruction\X86_64\Pop as X8664Pop;
 
-class PopTest extends PHPUnit_Framework_TestCase{
+class PopTest extends BasicTestCase{
 	
 	public function x8086Provider(){
 		$rv = array();
@@ -28,10 +26,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	 * @dataProvider x8086Provider
 	 */
 	public function test8086($register, $expected){
-		$instr = new X8086Pop($register);
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals($expected, $opcode);
+		$this->basicTest(new X8086Pop($register), $expected);
 	}
 	
 	public function i386Provider(){
@@ -57,10 +52,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	 * @dataProvider i386Provider
 	 */
 	public function testI386($register, $expected){
-		$instr = new I386Pop($register);
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals($expected, $opcode);
+		$this->basicTest(new I386Pop($register), $expected);
 	}
 	
 	public function x8664Provider(){
@@ -86,10 +78,7 @@ class PopTest extends PHPUnit_Framework_TestCase{
 	 * @dataProvider x8664Provider
 	 */
 	public function testX8664($register, $expected){
-		$instr = new X8664Pop($register);
-		$opcode = unpack('H*', $instr->assemble());
-		$opcode = $opcode[1];
-		$this->assertEquals($expected, $opcode);
+		$this->basicTest(new X8664Pop($register), $expected);
 	}
 	
 	/**
