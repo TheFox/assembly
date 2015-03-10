@@ -20,7 +20,6 @@ class Mov extends X86Mov{
 		$isStrDst = is_string($this->dst);
 		
 		if($isNumSrc && $isStrDst && $lenDst == 2){
-			
 			$pre = '';
 			$preLen = 0;
 			switch($this->dst){
@@ -68,7 +67,6 @@ class Mov extends X86Mov{
 			$this->setLen($opcodeLen / 2);
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
-			
 			$pre = '';
 			$preLen = 0;
 			switch($this->dst){
@@ -86,7 +84,6 @@ class Mov extends X86Mov{
 			$this->setLen($instr->getLen() + $preLen);
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3){
-			
 			if($this->isValidRegisterSize()){
 				#\Doctrine\Common\Util\Debug::dump($this->src);
 				$tSrc = $this->src;

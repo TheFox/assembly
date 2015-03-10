@@ -69,7 +69,6 @@ class Mov extends Instruction{
 			$this->setLen($opcodeLen / 2);
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
-			
 			if($this->isValidRegisterSize()){
 				$base = 0x8800;
 				switch($this->src[1]){
