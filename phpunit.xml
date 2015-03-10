@@ -22,6 +22,7 @@
 	<testsuites>
 		<testsuite name="default">
 			<file>tests/TheFox/Test/AssemblyTest.php</file>
+			<file>tests/TheFox/Test/BasicTest.php</file>
 			<file>tests/TheFox/Test/InstructionTest.php</file>
 			<file>tests/TheFox/Test/Mov8086Test.php</file>
 			<file>tests/TheFox/Test/MovI386Test.php</file>
