@@ -34,6 +34,45 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals('90c3', $opcode);
 	}
 	
+	public function testAssemble8086Offset(){
+		$nopInstr1 = new X8086Nop();
+		$nopInstr2 = new X8086Nop();
+		$bInstr1 = new BaseInstruction();
+		$retInstr = new X8086Ret();
+		
+		$bInstr1->setOpcode('909090');
+		$bInstr1->setLen(3);
+		
+		$asm = new Assembly();
+		$asm->addInstruction($nopInstr1);
+		$asm->addInstruction($nopInstr2);
+		$asm->addInstruction($bInstr1);
+		$asm->addInstruction($retInstr);
+		
+		$this->assertEquals(0, $nopInstr1->getOffset());
+		$this->assertEquals(1, $nopInstr2->getOffset());
+		$this->assertEquals(2, $bInstr1->getOffset());
+		$this->assertEquals(5, $retInstr->getOffset());
+		
+		
+		$bInstr1->setOpcode('90');
+		$bInstr1->setLen(1);
+		
+		$this->assertEquals(0, $nopInstr1->getOffset());
+		$this->assertEquals(1, $nopInstr2->getOffset());
+		$this->assertEquals(2, $bInstr1->getOffset());
+		$this->assertEquals(3, $retInstr->getOffset());
+		
+		
+		$bInstr1->setOpcode('90909090');
+		$bInstr1->setLen(4);
+		
+		$this->assertEquals(0, $nopInstr1->getOffset());
+		$this->assertEquals(1, $nopInstr2->getOffset());
+		$this->assertEquals(2, $bInstr1->getOffset());
+		$this->assertEquals(6, $retInstr->getOffset());
+	}
+	
 	public function testAssembleI386Base(){
 		$asm = new Assembly();
 		$asm->addInstruction(new I386Nop());
@@ -43,6 +82,45 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$opcode = $opcode[1];
 		
 		$this->assertEquals('90c3', $opcode);
+	}
+	
+	public function testAssembleI386Offset(){
+		$nopInstr1 = new I386Nop();
+		$nopInstr2 = new I386Nop();
+		$bInstr1 = new BaseInstruction();
+		$retInstr = new I386Ret();
+		
+		$bInstr1->setOpcode('909090');
+		$bInstr1->setLen(3);
+		
+		$asm = new Assembly();
+		$asm->addInstruction($nopInstr1);
+		$asm->addInstruction($nopInstr2);
+		$asm->addInstruction($bInstr1);
+		$asm->addInstruction($retInstr);
+		
+		$this->assertEquals(0, $nopInstr1->getOffset());
+		$this->assertEquals(1, $nopInstr2->getOffset());
+		$this->assertEquals(2, $bInstr1->getOffset());
+		$this->assertEquals(5, $retInstr->getOffset());
+		
+		
+		$bInstr1->setOpcode('90');
+		$bInstr1->setLen(1);
+		
+		$this->assertEquals(0, $nopInstr1->getOffset());
+		$this->assertEquals(1, $nopInstr2->getOffset());
+		$this->assertEquals(2, $bInstr1->getOffset());
+		$this->assertEquals(3, $retInstr->getOffset());
+		
+		
+		$bInstr1->setOpcode('90909090');
+		$bInstr1->setLen(4);
+		
+		$this->assertEquals(0, $nopInstr1->getOffset());
+		$this->assertEquals(1, $nopInstr2->getOffset());
+		$this->assertEquals(2, $bInstr1->getOffset());
+		$this->assertEquals(6, $retInstr->getOffset());
 	}
 	
 	public function testAssembleX8664Base(){
