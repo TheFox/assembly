@@ -11,50 +11,50 @@ class MovI386Test extends MovTest{
 	/**
 	 * @dataProvider basicProvider
 	 */
-	public function testI386Basic($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testI386Basic($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit8ValueToRegisterProvider
 	 */
-	public function testI386Bit8ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testI386Bit8ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit8RegisterToRegisterProvider
 	 */
-	public function testI386Bit8RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testI386Bit8RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit16ValueToRegisterProvider
 	 */
-	public function testI386Bit16ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), '66'.$expected);
+	public function testI386Bit16ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), '66'.$expected, $len + 1);
 	}
 	
 	/**
 	 * @dataProvider bit16RegisterToRegisterProvider
 	 */
-	public function testI386Bit16RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), '66'.$expected);
+	public function testI386Bit16RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), '66'.$expected, $len + 1);
 	}
 	
 	/**
 	 * @dataProvider bit32ValueToRegisterProvider
 	 */
-	public function testI386Bit32ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testI386Bit32ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit32RegisterToRegisterProvider
 	 */
-	public function testI386Bit32RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testI386Bit32RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**

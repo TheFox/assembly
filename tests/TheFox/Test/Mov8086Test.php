@@ -9,36 +9,36 @@ class Mov8086Test extends MovTest{
 	/**
 	 * @dataProvider basicProvider
 	 */
-	public function test8086Basic($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function test8086Basic($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit8ValueToRegisterProvider
 	 */
-	public function test8086Bit8ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function test8086Bit8ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit8RegisterToRegisterProvider
 	 */
-	public function test8086Bit8RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function test8086Bit8RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit16ValueToRegisterProvider
 	 */
-	public function test8086Bit16ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function test8086Bit16ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit16RegisterToRegisterProvider
 	 */
-	public function test8086Bit16RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function test8086Bit16RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**

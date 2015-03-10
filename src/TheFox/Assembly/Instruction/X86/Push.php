@@ -25,7 +25,12 @@ class Push extends Instruction{
 						$base += 3;
 						break;
 				}
-				$this->setOpcode(pack('H*', dechex($base)));
+				
+				$opcode = dechex($base);
+				$opcodeLen = strlen($opcode);
+				
+				$this->setOpcode(pack('H*', $opcode));
+				$this->setLen($opcodeLen / 2);
 			}
 		}
 	}

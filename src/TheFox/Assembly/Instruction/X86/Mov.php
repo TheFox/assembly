@@ -63,8 +63,10 @@ class Mov extends Instruction{
 			
 			$base <<= $len * 8;
 			$opcode = dechex($base | $this->src);
+			$opcodeLen = strlen($opcode);
 			
 			$this->setOpcode(pack('H*', $opcode));
+			$this->setLen($opcodeLen / 2);
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
 			
@@ -118,7 +120,10 @@ class Mov extends Instruction{
 				}
 				
 				$opcode = dechex($base);
+				$opcodeLen = strlen($opcode);
+				
 				$this->setOpcode(pack('H*', $opcode));
+				$this->setLen($opcodeLen / 2);
 			}
 		}
 	}

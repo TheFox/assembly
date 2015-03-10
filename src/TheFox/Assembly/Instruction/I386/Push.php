@@ -43,10 +43,12 @@ class Push extends X86Push{
 				$register = 'bx';
 				break;
 		}*/
+		$preLen = 0;
 		
 		$lenRegister = strlen($register);
 		if($lenRegister == 2){
 			$pre = pack('H*', '66');
+			$preLen++;
 		}
 		elseif($lenRegister == 3 && $register[0] == 'e'){
 			$register = $register[1].$register[2];
@@ -54,6 +56,7 @@ class Push extends X86Push{
 		
 		$instr = new X86Push($register);
 		$this->setOpcode($pre.$instr->assemble());
+		$this->setLen($instr->getLen() + $preLen);
 	}
 	
 }

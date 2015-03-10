@@ -11,64 +11,64 @@ class MovX8664Test extends MovTest{
 	/**
 	 * @dataProvider basicProvider
 	 */
-	public function testX8664Basic($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testX8664Basic($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit8ValueToRegisterProvider
 	 */
-	public function testX8664Bit8ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testX8664Bit8ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit8RegisterToRegisterProvider
 	 */
-	public function testX8664Bit8RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testX8664Bit8RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit16ValueToRegisterProvider
 	 */
-	public function testX8664Bit16ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), '66'.$expected);
+	public function testX8664Bit16ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), '66'.$expected, $len + 1);
 	}
 	
 	/**
 	 * @dataProvider bit16RegisterToRegisterProvider
 	 */
-	public function testX8664Bit16RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), '66'.$expected);
+	public function testX8664Bit16RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), '66'.$expected, $len + 1);
 	}
 	
 	/**
 	 * @dataProvider bit32ValueToRegisterProvider
 	 */
-	public function testX8664Bit32ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testX8664Bit32ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit32RegisterToRegisterProvider
 	 */
-	public function testX8664Bit32RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testX8664Bit32RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit64ValueToRegisterProvider
 	 */
-	public function testX8664Bit64ValueToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testX8664Bit64ValueToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**
 	 * @dataProvider bit64RegisterToRegisterProvider
 	 */
-	public function testX8664Bit64RegisterToRegister($src, $dst, $expected){
-		$this->basicTest(new Mov($src, $dst), $expected);
+	public function testX8664Bit64RegisterToRegister($src, $dst, $expected, $len){
+		$this->basicTest(new Mov($src, $dst), $expected, $len);
 	}
 	
 	/**

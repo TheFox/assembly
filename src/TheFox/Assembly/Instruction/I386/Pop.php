@@ -10,10 +10,12 @@ class Pop extends X86Pop{
 		$register = strtolower($register);
 		
 		$pre = '';
+		$preLen = 0;
 		
 		$lenRegister = strlen($register);
 		if($lenRegister == 2){
 			$pre = pack('H*', '66');
+			$preLen++;
 		}
 		elseif($lenRegister == 3 && $register[0] == 'e'){
 			$register = $register[1].$register[2];
@@ -21,6 +23,7 @@ class Pop extends X86Pop{
 		
 		$instr = new X86Pop($register);
 		$this->setOpcode($pre.$instr->assemble());
+		$this->setLen($instr->getLen() + $preLen);
 	}
 	
 }

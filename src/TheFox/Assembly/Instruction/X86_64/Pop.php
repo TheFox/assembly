@@ -24,6 +24,7 @@ class Pop extends I386Pop{
 		
 		$instr = new I386Pop($register);
 		$this->setOpcode($instr->assemble());
+		$this->setLen($instr->getLen());
 	}
 	
 }

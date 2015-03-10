@@ -11,13 +11,13 @@ class PopTest extends BasicTestCase{
 	public function x8086Provider(){
 		$rv = array();
 		
-		$rv[] = array('', '');
-		$rv[] = array('XYZ', '');
+		$rv[] = array('', '', 0);
+		$rv[] = array('XYZ', '', 0);
 		
-		$rv[] = array('ax', '58');
-		$rv[] = array('cx', '59');
-		$rv[] = array('dx', '5a');
-		$rv[] = array('bx', '5b');
+		$rv[] = array('ax', '58', 1);
+		$rv[] = array('cx', '59', 1);
+		$rv[] = array('dx', '5a', 1);
+		$rv[] = array('bx', '5b', 1);
 		
 		return $rv;
 	}
@@ -25,25 +25,25 @@ class PopTest extends BasicTestCase{
 	/**
 	 * @dataProvider x8086Provider
 	 */
-	public function test8086($register, $expected){
-		$this->basicTest(new X8086Pop($register), $expected);
+	public function test8086($register, $expected, $len){
+		$this->basicTest(new X8086Pop($register), $expected, $len);
 	}
 	
 	public function i386Provider(){
 		$rv = array();
 		
-		$rv[] = array('', '');
-		$rv[] = array('XYZ', '');
+		$rv[] = array('', '', 0);
+		$rv[] = array('XYZ', '', 0);
 		
-		$rv[] = array('ax', '6658');
-		$rv[] = array('cx', '6659');
-		$rv[] = array('dx', '665a');
-		$rv[] = array('bx', '665b');
+		$rv[] = array('ax', '6658', 2);
+		$rv[] = array('cx', '6659', 2);
+		$rv[] = array('dx', '665a', 2);
+		$rv[] = array('bx', '665b', 2);
 		
-		$rv[] = array('eax', '58');
-		$rv[] = array('ecx', '59');
-		$rv[] = array('edx', '5a');
-		$rv[] = array('ebx', '5b');
+		$rv[] = array('eax', '58', 1);
+		$rv[] = array('ecx', '59', 1);
+		$rv[] = array('edx', '5a', 1);
+		$rv[] = array('ebx', '5b', 1);
 		
 		return $rv;
 	}
@@ -51,25 +51,25 @@ class PopTest extends BasicTestCase{
 	/**
 	 * @dataProvider i386Provider
 	 */
-	public function testI386($register, $expected){
-		$this->basicTest(new I386Pop($register), $expected);
+	public function testI386($register, $expected, $len){
+		$this->basicTest(new I386Pop($register), $expected, $len);
 	}
 	
 	public function x8664Provider(){
 		$rv = array();
 		
-		$rv[] = array('', '');
-		$rv[] = array('XYZ', '');
+		$rv[] = array('', '', 0);
+		$rv[] = array('XYZ', '', 0);
 		
-		$rv[] = array('ax', '6658');
-		$rv[] = array('cx', '6659');
-		$rv[] = array('dx', '665a');
-		$rv[] = array('bx', '665b');
+		$rv[] = array('ax', '6658', 2);
+		$rv[] = array('cx', '6659', 2);
+		$rv[] = array('dx', '665a', 2);
+		$rv[] = array('bx', '665b', 2);
 		
-		$rv[] = array('rax', '58');
-		$rv[] = array('rcx', '59');
-		$rv[] = array('rdx', '5a');
-		$rv[] = array('rbx', '5b');
+		$rv[] = array('rax', '58', 1);
+		$rv[] = array('rcx', '59', 1);
+		$rv[] = array('rdx', '5a', 1);
+		$rv[] = array('rbx', '5b', 1);
 		
 		return $rv;
 	}
@@ -77,8 +77,8 @@ class PopTest extends BasicTestCase{
 	/**
 	 * @dataProvider x8664Provider
 	 */
-	public function testX8664($register, $expected){
-		$this->basicTest(new X8664Pop($register), $expected);
+	public function testX8664($register, $expected, $len){
+		$this->basicTest(new X8664Pop($register), $expected, $len);
 	}
 	
 	/**

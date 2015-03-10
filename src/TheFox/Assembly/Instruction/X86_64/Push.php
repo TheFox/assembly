@@ -24,6 +24,7 @@ class Push extends I386Push{
 		
 		$instr = new I386Push($register);
 		$this->setOpcode($instr->assemble());
+		$this->setLen($instr->getLen());
 	}
 	
 }

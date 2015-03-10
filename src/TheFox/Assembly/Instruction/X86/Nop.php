@@ -8,6 +8,7 @@ class Nop extends Instruction{
 	
 	public function __construct(){
 		$this->setOpcode(pack('H*', '90'));
+		$this->setLen(1);
 	}
 	
 }

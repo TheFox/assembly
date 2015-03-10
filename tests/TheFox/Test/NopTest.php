@@ -9,15 +9,15 @@ use TheFox\Assembly\Instruction\X86_64\Nop as X8664Nop;
 class NopTest extends BasicTestCase{
 	
 	public function test8086(){
-		$this->basicTest(new X8086Nop(), '90');
+		$this->basicTest(new X8086Nop(), '90', 1);
 	}
 	
 	public function testI386(){
-		$this->basicTest(new I386Nop(), '90');
+		$this->basicTest(new I386Nop(), '90', 1);
 	}
 	
 	public function testX8664(){
-		$this->basicTest(new X8664Nop(), '90');
+		$this->basicTest(new X8664Nop(), '90', 1);
 	}
 	
 }
