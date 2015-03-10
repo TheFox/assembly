@@ -22,7 +22,7 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$this->assertTrue(extension_loaded('bcmath'));
 	}
 	
-	public function testAssemble8086(){
+	public function testAssemble8086Base(){
 		$asm = new Assembly();
 		$asm->addInstruction(new X8086Nop());
 		$asm->addInstruction(new X8086Ret());
@@ -33,7 +33,7 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals('90c3', $opcode);
 	}
 	
-	public function testAssembleI386(){
+	public function testAssembleI386Base(){
 		$asm = new Assembly();
 		$asm->addInstruction(new I386Nop());
 		$asm->addInstruction(new I386Ret());
@@ -44,7 +44,7 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals('90c3', $opcode);
 	}
 	
-	public function testAssembleX8664(){
+	public function testAssembleX8664Base(){
 		$asm = new Assembly();
 		$asm->addInstruction(new X8664Nop());
 		$asm->addInstruction(new X8664Ret());
