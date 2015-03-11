@@ -30,9 +30,7 @@ class Jmp extends Instruction{
 				$base = 0xEB;
 				$dst &= 0xff;
 				$dst = dechex($dst);
-				if(strlen($dst) < 2){
-					$dst = '0'.$dst;
-				}
+				$dst = sprintf('%02s', $dst);
 				print "\t".'short label: '.$dst."\n";
 			}
 			
