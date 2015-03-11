@@ -8,10 +8,16 @@ use TheFox\Assembly\Assembly;
 use TheFox\Assembly\Instruction as BaseInstruction;
 use TheFox\Assembly\Instruction\X86\Nop as X8086Nop;
 use TheFox\Assembly\Instruction\X86\Ret as X8086Ret;
+use TheFox\Assembly\Instruction\X86\Mov as X8086Mov;
+use TheFox\Assembly\Instruction\X86\Jmp as X8086Jmp;
 use TheFox\Assembly\Instruction\I386\Nop as I386Nop;
 use TheFox\Assembly\Instruction\I386\Ret as I386Ret;
+use TheFox\Assembly\Instruction\I386\Mov as I386Mov;
+use TheFox\Assembly\Instruction\I386\Jmp as I386Jmp;
 use TheFox\Assembly\Instruction\X86_64\Nop as X8664Nop;
 use TheFox\Assembly\Instruction\X86_64\Ret as X8664Ret;
+use TheFox\Assembly\Instruction\X86_64\Mov as X8664Mov;
+use TheFox\Assembly\Instruction\X86_64\Jmp as X8664Jmp;
 
 class AssemblyTest extends PHPUnit_Framework_TestCase{
 	
@@ -171,6 +177,23 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals(1, $nopInstr2->getOffset());
 		$this->assertEquals(2, $bInstr1->getOffset());
 		$this->assertEquals(6, $retInstr->getOffset());
+	}
+	
+	public function testAssembleX8664Jmp(){
+		$retInstr = new X8664Ret();
+		
+		$asm = new Assembly();
+		$asm->addInstruction(new X8664Mov('rax', 'rbx'));
+		$asm->addInstruction(new X8664Jmp($retInstr));
+		#$asm->addInstruction(new X8664Nop());
+		#$asm->addInstruction($retInstr);
+		#$asm->addInstruction(new X8664Nop());
+		
+		$opcode = $asm->assemble();
+		
+		$hex = unpack('H*', $opcode);
+		$hex = $hex[1];
+		$this->assertEquals('4889c3', $hex);
 	}
 	
 }
