@@ -14,12 +14,17 @@ class JmpTest extends BasicTestCase{
 		$rv[] = array('', '', 0);
 		
 		$rv[] = array(-0x80, 'eb80', 2);
-		#$rv[] = array(-0x79, 'eb81', 2);
+		$rv[] = array(-0x7f, 'eb81', 2);
+		$rv[] = array(-0x7e, 'eb82', 2);
+		
 		$rv[] = array(-2, 'ebfe', 2);
 		$rv[] = array(-1, 'ebff', 2);
 		$rv[] = array(0, 'eb00', 2);
 		$rv[] = array(1, 'eb01', 2);
+		$rv[] = array(2, 'eb02', 2);
+		
 		$rv[] = array(0x7f, 'eb7f', 2);
+		#$rv[] = array(0x80, 'e980000000', 5);
 		
 		return $rv;
 	}
