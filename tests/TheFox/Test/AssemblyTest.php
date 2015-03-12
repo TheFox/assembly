@@ -179,21 +179,61 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals(6, $retInstr->getOffset());
 	}
 	
-	public function testAssembleX8664Jmp(){
-		$retInstr = new X8664Ret();
+	public function testAssembleX8664Jmp1(){
+		$retInstr1 = new X8664Ret();
+		
+		$movInstr1 = new X8664Mov('rax', 'rbx');
+		$jmpInstr1 = new X8664Jmp($retInstr1);
+		$nopInstr1 = new X8664Nop();
 		
 		$asm = new Assembly();
-		$asm->addInstruction(new X8664Mov('rax', 'rbx'));
-		$asm->addInstruction(new X8664Jmp($retInstr));
-		$asm->addInstruction(new X8664Nop());
-		$asm->addInstruction($retInstr);
-		$asm->addInstruction(new X8664Nop());
-		
+		$asm->addInstruction($movInstr1);
+		$asm->addInstruction($jmpInstr1);
+		$asm->addInstruction($nopInstr1);
+		$asm->addInstruction($retInstr1);
 		$opcode = $asm->assemble();
 		
 		$hex = unpack('H*', $opcode);
 		$hex = $hex[1];
-		$this->assertEquals('4889c3ebff90c390', $hex);
+		$this->assertEquals('4889c3eb0190c3', $hex);
+		
+		$this->assertEquals(0, $movInstr1->getOffset());
+		$this->assertEquals(3, $jmpInstr1->getOffset());
+		$this->assertEquals(5, $nopInstr1->getOffset());
+		$this->assertEquals(6, $retInstr1->getOffset());
+	}
+	
+	public function testAssembleX8664Jmp2(){
+		$retInstr1 = new X8664Ret();
+		
+		$movInstr1 = new X8664Mov('rax', 'rbx');
+		$jmpInstr1 = new X8664Jmp($retInstr1);
+		
+		$nopInstrs = array();
+		for($i = 0; $i < 0x2; $i++){
+			$nopInstrs[] = new X8664Nop();
+		}
+		
+		$asm = new Assembly();
+		$asm->addInstruction($movInstr1);
+		$asm->addInstruction($jmpInstr1);
+		
+		foreach($nopInstrs as $instrId => $nopInstr1){
+			$asm->addInstruction($nopInstr1);
+		}
+		
+		$asm->addInstruction($retInstr1);
+		$opcode = $asm->assemble();
+		
+		$hex = unpack('H*', $opcode);
+		$hex = $hex[1];
+		$this->assertEquals('4889c3eb029090c3', $hex);
+		
+		$this->assertEquals(0, $movInstr1->getOffset());
+		$this->assertEquals(3, $jmpInstr1->getOffset());
+		$this->assertEquals(5, $nopInstrs[0]->getOffset());
+		$this->assertEquals(6, $nopInstrs[1]->getOffset());
+		$this->assertEquals(7, $retInstr1->getOffset());
 	}
 	
 }
