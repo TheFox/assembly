@@ -124,4 +124,119 @@ class JmpTest extends BasicTestCase{
 		$this->assertEquals('ebfe', $opcode);
 	}
 	
+	public function i386ValueProvider(){
+		$rv = array();
+		
+		$rv[] = array('', '', 0);
+		
+		$rv[] = array(-0x80000001, '', 0);
+		
+		$rv[] = array(-0x80000000, 'e900000080', 5);
+		$rv[] = array(-0x7fffffff, 'e901000080', 5);
+		$rv[] = array(-0x7ffffffe, 'e902000080', 5);
+		
+		$rv[] = array(-0x1001, 'e9ffefffff', 5);
+		$rv[] = array(-0x1000, 'e900f0ffff', 5);
+		$rv[] = array(-0xfff, 'e901f0ffff', 5);
+		$rv[] = array(-0xffe, 'e902f0ffff', 5);
+		
+		$rv[] = array(-0x801, 'e9fff7ffff', 5);
+		$rv[] = array(-0x800, 'e900f8ffff', 5);
+		$rv[] = array(-0x7ff, 'e901f8ffff', 5);
+		$rv[] = array(-0x7fe, 'e902f8ffff', 5);
+		
+		$rv[] = array(-0x101, 'e9fffeffff', 5);
+		$rv[] = array(-0x100, 'e900ffffff', 5);
+		$rv[] = array(-0xff, 'e901ffffff', 5);
+		$rv[] = array(-0xfe, 'e902ffffff', 5);
+		
+		$rv[] = array(-0x83, 'e97dffffff', 5);
+		$rv[] = array(-0x82, 'e97effffff', 5);
+		$rv[] = array(-0x81, 'e97fffffff', 5);
+		
+		$rv[] = array(-0x80, 'eb80', 2);
+		$rv[] = array(-0x7f, 'eb81', 2);
+		$rv[] = array(-0x7e, 'eb82', 2);
+		
+		$rv[] = array(-2, 'ebfe', 2);
+		$rv[] = array(-1, 'ebff', 2);
+		$rv[] = array(0, 'eb00', 2);
+		$rv[] = array(1, 'eb01', 2);
+		$rv[] = array(2, 'eb02', 2);
+		
+		$rv[] = array(0x7e, 'eb7e', 2);
+		$rv[] = array(0x7f, 'eb7f', 2);
+		
+		$rv[] = array(0x80, 'e980000000', 5);
+		$rv[] = array(0x81, 'e981000000', 5);
+		$rv[] = array(0xff, 'e9ff000000', 5);
+		$rv[] = array(0x100, 'e900010000', 5);
+		$rv[] = array(0x101, 'e901010000', 5);
+		
+		$rv[] = array(0x7fffffff, 'e9ffffff7f', 5);
+		
+		$rv[] = array(0x80000000, '', 0);
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider i386ValueProvider
+	 */
+	public function testI386Value($offset, $expected, $len){
+		$this->basicTest(new I386Jmp($offset), $expected, $len);
+	}
+	
+	public function i386ObjectProvider(){
+		$rv = array();
+		
+		$rv[] = array(6, 8, 'eb00');
+		$rv[] = array(6, 7, 'ebff');
+		$rv[] = array(6, 9, 'eb01');
+		$rv[] = array(0, 0x80, 'eb7e');
+		$rv[] = array(0, 0x80 + 1, 'eb7f');
+		$rv[] = array(0, 0x80 + 2, 'e980000000');
+		$rv[] = array(0, 0x80 + 3, 'e981000000');
+		$rv[] = array(0, 0xf00 + 0x80, 'e97e0f0000');
+		$rv[] = array(0, 0xf00 + 0x80 + 3, 'e9810f0000');
+		
+		$rv[] = array(8, 7, 'ebfd');
+		$rv[] = array(150, 149, 'ebfd');
+		$rv[] = array(1500, 1499, 'ebfd');
+		
+		$rv[] = array(0x7e, 0, 'eb80');
+		$rv[] = array(0x7f, 0, 'e97cffffff');
+		$rv[] = array(0x80, 0, 'e97bffffff');
+		
+		$rv[] = array(0, 0, 'ebfe');
+		$rv[] = array(150, 150, 'ebfe');
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider i386ObjectProvider
+	 */
+	public function testI386Object($offsetJmp, $offsetInstr, $expected){
+		$instr1 = new Instruction();
+		$instr1->setOffset($offsetInstr);
+		
+		$jmp1 = new I386Jmp($instr1);
+		$jmp1->setOffset($offsetJmp);
+		
+		$opcode = unpack('H*', $jmp1->assemble());
+		$opcode = $opcode[1];
+		$this->assertEquals($expected, $opcode);
+	}
+	
+	public function testI386Self(){
+		$jmp1 = new I386Jmp(0);
+		$jmp1->dst = $jmp1;
+		$jmp1->setOffset(10);
+		
+		$opcode = unpack('H*', $jmp1->assemble());
+		$opcode = $opcode[1];
+		$this->assertEquals('ebfe', $opcode);
+	}
+	
 }
