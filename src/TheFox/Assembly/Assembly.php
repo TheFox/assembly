@@ -32,18 +32,22 @@ class Assembly{
 	}*/
 	
 	public function updateInstructionLen(Instruction $instr, $newLen){
-		$lenOffset = $newLen - $instr->getLen();
-		#print "lenOffset: $lenOffset\n";
+		#print 'updateInstructionLen'."\n";
 		
-		#print 'offset: '.$this->offset."\n";
+		$lenOffset = $newLen - $instr->getLen();
+		#print "\t".'lenOffset: '.$lenOffset."\n";
+		
+		#print "\t".'offset old: '.$this->offset."\n";
 		$this->offset += $lenOffset;
-		#print 'offset: '.$this->offset."\n";
+		#print "\t".'offset new: '.$this->offset."\n";
 		
 		for($instrId = $instr->getId() + 1; $instrId < $this->instructionId; $instrId++){
 			if(isset($this->instructions[$instrId])){
 				$fInstr = $this->instructions[$instrId];
+				#$oos = $fInstr->getOffset();
 				$fInstr->addOffset($lenOffset);
-				#print "\t".'id: '.$instrId.' -> '.$fInstr->getOffset()."\n";
+				
+				#print "\t".'instr '.$instrId.': '.$oos.' -> '.$fInstr->getOffset()."\n";
 			}
 		}
 	}

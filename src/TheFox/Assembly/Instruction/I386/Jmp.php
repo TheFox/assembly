@@ -9,11 +9,18 @@ use TheFox\Assembly\Instruction\X86\Jmp as X86Jmp;
 class Jmp extends X86Jmp{
 	
 	public function assemble(){
+		#print 'jmp assemble'."\n";
 		$dst = $this->dst;
 		
 		if($dst instanceof Instruction){
+			#\Doctrine\Common\Util\Debug::dump($dst, 1);
+			#\Doctrine\Common\Util\Debug::dump($this, 1);
+			
+			#print "\t".'dst offset:  '.$dst->getOffset()."\n";
+			#print "\t".'this offset: '.$this->getOffset()."\n";
+			
 			$offset = $dst->getOffset() - $this->getOffset();
-			#print "\t".'offset: '.$offset."\n";
+			#print "\t".'diff: '.$offset."\n";
 			
 			$orgOffset = $offset;
 			$offset -= 2;
@@ -29,7 +36,7 @@ class Jmp extends X86Jmp{
 			$this->setLen($jmp->getLen());
 		}
 		elseif(is_numeric($dst)){
-			#print 'is numeric: '.$dst.' '.dechex($dst)."\n";
+			#print "\t".'is numeric: '.$dst.' '.dechex($dst)."\n";
 			
 			$base = 0;
 			#$absDst = abs($dst);
