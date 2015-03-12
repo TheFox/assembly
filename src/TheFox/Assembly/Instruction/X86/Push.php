@@ -4,6 +4,8 @@
 
 namespace TheFox\Assembly\Instruction\X86;
 
+use TheFox\Assembly\Instruction;
+
 class Push extends Instruction{
 	
 	public function __construct($register){

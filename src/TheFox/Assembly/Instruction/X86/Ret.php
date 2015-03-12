@@ -2,6 +2,8 @@
 
 namespace TheFox\Assembly\Instruction\X86;
 
+use TheFox\Assembly\Instruction;
+
 class Ret extends Instruction{
 	
 	public function __construct(){

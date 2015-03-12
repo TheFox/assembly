@@ -5,6 +5,7 @@
 namespace TheFox\Assembly\Instruction\X86;
 
 use TheFox\Utilities\Num;
+use TheFox\Assembly\Instruction;
 
 class Mov extends Instruction{
 	
