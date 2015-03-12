@@ -47,7 +47,7 @@ class Instruction{
 	}
 	
 	public function setLen($len){
-		if($this->getAssembly()){
+		if($this->getAssembly() && $this->len != $len){
 			$this->getAssembly()->updateInstructionLen($this, $len);
 		}
 		$this->len = $len;
