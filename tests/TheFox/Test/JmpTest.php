@@ -72,6 +72,24 @@ class JmpTest extends BasicTestCase{
 		$this->basicTest(new X8086Jmp($offset), $expected, $len);
 	}
 	
+	public function x8086StringProvider(){
+		$rv = array();
+		
+		$rv[] = array('ax', 'ffe0', 2);
+		$rv[] = array('cx', 'ffe1', 2);
+		$rv[] = array('dx', 'ffe2', 2);
+		$rv[] = array('bx', 'ffe3', 2);
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider x8086StringProvider
+	 */
+	public function test8086String($register, $expected, $len){
+		$this->basicTest(new X8086Jmp($register), $expected, $len);
+	}
+	
 	public function x8086ObjectProvider(){
 		$rv = array();
 		
@@ -187,6 +205,29 @@ class JmpTest extends BasicTestCase{
 		$this->basicTest(new I386Jmp($offset), $expected, $len);
 	}
 	
+	public function i386StringProvider(){
+		$rv = array();
+		
+		$rv[] = array('ax', '66ffe0', 3);
+		$rv[] = array('cx', '66ffe1', 3);
+		$rv[] = array('dx', '66ffe2', 3);
+		$rv[] = array('bx', '66ffe3', 3);
+		
+		$rv[] = array('eax', 'ffe0', 2);
+		$rv[] = array('ecx', 'ffe1', 2);
+		$rv[] = array('edx', 'ffe2', 2);
+		$rv[] = array('ebx', 'ffe3', 2);
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider i386StringProvider
+	 */
+	public function testI386String($register, $expected, $len){
+		$this->basicTest(new I386Jmp($register), $expected, $len);
+	}
+	
 	public function i386ObjectProvider(){
 		$rv = array();
 		
@@ -300,6 +341,29 @@ class JmpTest extends BasicTestCase{
 	 */
 	public function test8664Value($offset, $expected, $len){
 		$this->basicTest(new X8664Jmp($offset), $expected, $len);
+	}
+	
+	public function x8664StringProvider(){
+		$rv = array();
+		
+		$rv[] = array('ax', '66ffe0', 3);
+		$rv[] = array('cx', '66ffe1', 3);
+		$rv[] = array('dx', '66ffe2', 3);
+		$rv[] = array('bx', '66ffe3', 3);
+		
+		$rv[] = array('rax', 'ffe0', 2);
+		$rv[] = array('rcx', 'ffe1', 2);
+		$rv[] = array('rdx', 'ffe2', 2);
+		$rv[] = array('rbx', 'ffe3', 2);
+		
+		return $rv;
+	}
+	
+	/**
+	 * @dataProvider x8664StringProvider
+	 */
+	public function testX8664String($register, $expected, $len){
+		$this->basicTest(new X8664Jmp($register), $expected, $len);
 	}
 	
 	public function x8664ObjectProvider(){

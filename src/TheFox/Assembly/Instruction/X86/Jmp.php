@@ -18,6 +18,7 @@ class Jmp extends Instruction{
 	
 	public function assemble(){
 		$dst = $this->dst;
+		$isStrDst = is_string($dst);
 		
 		if($dst instanceof Instruction){
 			$offset = $dst->getOffset() - $this->getOffset();
@@ -60,6 +61,33 @@ class Jmp extends Instruction{
 			
 			if($base){
 				$opcode = dechex($dst);
+				$opcodeLen = strlen($opcode);
+				
+				$this->setOpcode(pack('H*', $opcode));
+				$this->setLen($opcodeLen / 2);
+			}
+		}
+		elseif($isStrDst){
+			$strLenDst = strlen($dst);
+			
+			if($strLenDst == 2){
+				$base = 0xFFE0;
+				switch($dst[0]){
+					/*case 'a':
+						$base += 0;
+						break;*/
+					case 'c':
+						$base++;
+						break;
+					case 'd':
+						$base += 2;
+						break;
+					case 'b':
+						$base += 3;
+						break;
+				}
+				
+				$opcode = dechex($base);
 				$opcodeLen = strlen($opcode);
 				
 				$this->setOpcode(pack('H*', $opcode));

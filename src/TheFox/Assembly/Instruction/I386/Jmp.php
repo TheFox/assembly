@@ -16,6 +16,7 @@ class Jmp extends X86Jmp{
 	public function assemble(){
 		#print 'jmp assemble'."\n";
 		$dst = $this->dst;
+		$isStrDst = is_string($dst);
 		
 		if($dst instanceof Instruction){
 			#\Doctrine\Common\Util\Debug::dump($dst, 1);
@@ -64,6 +65,38 @@ class Jmp extends X86Jmp{
 			
 			if($base){
 				$opcode = dechex($dst);
+				$opcodeLen = strlen($opcode);
+				
+				$this->setOpcode(pack('H*', $opcode));
+				$this->setLen($opcodeLen / 2);
+			}
+		}
+		elseif($isStrDst){
+			$strLenDst = strlen($dst);
+			
+			if($strLenDst == 2){
+				$jmp = new X86Jmp($dst);
+				$this->setOpcode(pack('H*', '66').$jmp->assemble());
+				$this->setLen($jmp->getLen() + 1);
+			}
+			elseif($strLenDst == 3){
+				$base = 0xFFE0;
+				switch($dst[1]){
+					/*case 'a':
+						$base += 0;
+						break;*/
+					case 'c':
+						$base++;
+						break;
+					case 'd':
+						$base += 2;
+						break;
+					case 'b':
+						$base += 3;
+						break;
+				}
+				
+				$opcode = dechex($base);
 				$opcodeLen = strlen($opcode);
 				
 				$this->setOpcode(pack('H*', $opcode));
