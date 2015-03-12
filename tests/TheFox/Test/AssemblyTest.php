@@ -185,15 +185,15 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		$asm = new Assembly();
 		$asm->addInstruction(new X8664Mov('rax', 'rbx'));
 		$asm->addInstruction(new X8664Jmp($retInstr));
-		#$asm->addInstruction(new X8664Nop());
-		#$asm->addInstruction($retInstr);
-		#$asm->addInstruction(new X8664Nop());
+		$asm->addInstruction(new X8664Nop());
+		$asm->addInstruction($retInstr);
+		$asm->addInstruction(new X8664Nop());
 		
 		$opcode = $asm->assemble();
 		
 		$hex = unpack('H*', $opcode);
 		$hex = $hex[1];
-		$this->assertEquals('4889c3ebfb', $hex);
+		$this->assertEquals('4889c3ebff90c390', $hex);
 	}
 	
 }
