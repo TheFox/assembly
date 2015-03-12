@@ -10,6 +10,10 @@ class Instruction{
 	private $opcode = '';
 	private $len = 0;
 	
+	public function __construct(){
+		$this->setLen(1);
+	}
+	
 	public function setId($id){
 		$this->id = $id;
 	}

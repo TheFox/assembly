@@ -13,6 +13,7 @@ class Jmp extends Instruction{
 	
 	public function __construct($dst){
 		$this->dst = $dst;
+		$this->setLen(2);
 	}
 	
 	public function assemble(){

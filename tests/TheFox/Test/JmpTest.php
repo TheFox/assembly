@@ -12,9 +12,9 @@ class JmpTest extends BasicTestCase{
 	public function x8086ValueProvider(){
 		$rv = array();
 		
-		$rv[] = array('', '', 0);
+		$rv[] = array('', '', 2);
 		
-		$rv[] = array(-0x8001, '', 0);
+		$rv[] = array(-0x8001, '', 2);
 		
 		$rv[] = array(-0x8000, 'e90080', 3);
 		$rv[] = array(-0x7fff, 'e90180', 3);
@@ -60,7 +60,7 @@ class JmpTest extends BasicTestCase{
 		
 		$rv[] = array(0x7fff, 'e9ff7f', 3);
 		
-		$rv[] = array(0x8000, '', 0);
+		$rv[] = array(0x8000, '', 2);
 		
 		return $rv;
 	}
@@ -127,9 +127,9 @@ class JmpTest extends BasicTestCase{
 	public function i386ValueProvider(){
 		$rv = array();
 		
-		$rv[] = array('', '', 0);
+		$rv[] = array('', '', 2);
 		
-		$rv[] = array(-0x80000001, '', 0);
+		$rv[] = array(-0x80000001, '', 2);
 		
 		$rv[] = array(-0x80000000, 'e900000080', 5);
 		$rv[] = array(-0x7fffffff, 'e901000080', 5);
@@ -175,7 +175,7 @@ class JmpTest extends BasicTestCase{
 		
 		$rv[] = array(0x7fffffff, 'e9ffffff7f', 5);
 		
-		$rv[] = array(0x80000000, '', 0);
+		$rv[] = array(0x80000000, '', 2);
 		
 		return $rv;
 	}
@@ -242,9 +242,9 @@ class JmpTest extends BasicTestCase{
 	public function x8664ValueProvider(){
 		$rv = array();
 		
-		$rv[] = array('', '', 0);
+		$rv[] = array('', '', 2);
 		
-		$rv[] = array(-0x80000001, '', 0);
+		$rv[] = array(-0x80000001, '', 2);
 		
 		$rv[] = array(-0x80000000, 'e900000080', 5);
 		$rv[] = array(-0x7fffffff, 'e901000080', 5);
@@ -290,7 +290,7 @@ class JmpTest extends BasicTestCase{
 		
 		$rv[] = array(0x7fffffff, 'e9ffffff7f', 5);
 		
-		$rv[] = array(0x80000000, '', 0);
+		$rv[] = array(0x80000000, '', 2);
 		
 		return $rv;
 	}
