@@ -15,7 +15,7 @@ class Push extends I386Push{
 		if($lenRegister == 3){
 			switch($register[0]){
 				case 'e':
-					throw new UnexpectedValueException('exx registered not allowed in X86_64.', 1);
+					throw new UnexpectedValueException('exx registers not allowed in X86_64.', 1);
 				case 'r':
 					$register = 'e'.$register[1].$register[2];
 					break;
