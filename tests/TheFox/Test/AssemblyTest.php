@@ -193,7 +193,7 @@ class AssemblyTest extends PHPUnit_Framework_TestCase{
 		
 		$hex = unpack('H*', $opcode);
 		$hex = $hex[1];
-		$this->assertEquals('4889c3', $hex);
+		$this->assertEquals('4889c3ebfb', $hex);
 	}
 	
 }
