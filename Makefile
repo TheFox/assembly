@@ -10,6 +10,8 @@ PHPCS_SOURCE = src tests
 PHPUNIT = vendor/bin/phpunit
 COMPOSER = ./composer.phar
 COMPOSER_DEV ?= 
+COMPOSER_INTERACTION ?= --no-interaction
+COMPOSER_PREFER_SOURCE ?= 
 
 
 .PHONY: all install update test test_phpcs test_phpunit test_phpunit_cc phpcbf_run clean clean_all
@@ -44,7 +46,7 @@ clean:
 clean_all: clean
 
 $(VENDOR): $(COMPOSER)
-	$(COMPOSER) install $(COMPOSER_PREFER_SOURCE) --no-interaction $(COMPOSER_DEV)
+	$(COMPOSER) install $(COMPOSER_PREFER_SOURCE) $(COMPOSER_INTERACTION) $(COMPOSER_DEV)
 
 $(COMPOSER):
 	curl -sS https://getcomposer.org/installer | php
