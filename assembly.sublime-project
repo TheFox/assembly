@@ -3,7 +3,7 @@
 		{
 			"path": ".",
 			"name": "Assembly",
-			"folder_exclude_patterns": [ "log", "vendor" ],
+			"folder_exclude_patterns": [ "build", "log", "vendor" ],
 			"file_exclude_patterns": [ ]
 		}
 	]

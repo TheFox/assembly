@@ -4,12 +4,12 @@
 	"license": "GPL-3.0",
 	"type": "project",
 	"keywords": [ "asm", "assembly", "assembler", "x86", "i386", "x86_64", "x86-64" ],
-	"homepage": "http://fox21.at",
+	"homepage": "https://fox21.at",
 	"authors": [
 		{
 			"name": "Christian Mayer",
 			"email": "christian@fox21.at",
-			"homepage": "http://fox21.at"
+			"homepage": "https://fox21.at"
 		}
 	],
 	"require": {
