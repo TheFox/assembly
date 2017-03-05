@@ -3,7 +3,6 @@
 namespace TheFox\Test;
 
 use PHPUnit_Framework_TestCase;
-
 use TheFox\Assembly\Assembly;
 use TheFox\Assembly\Instruction;
 
