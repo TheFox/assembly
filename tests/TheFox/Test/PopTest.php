@@ -66,6 +66,12 @@ class PopTest extends BasicTestCase{
 		$rv[] = array('dx', '665a', 2);
 		$rv[] = array('bx', '665b', 2);
 		
+		// throws Exception, see testX8664UnexpectedValueException()
+		// $rv[] = array('eax', '58', 1);
+		// $rv[] = array('ecx', '59', 1);
+		// $rv[] = array('edx', '5a', 1);
+		// $rv[] = array('ebx', '5b', 1);
+		
 		$rv[] = array('rax', '58', 1);
 		$rv[] = array('rcx', '59', 1);
 		$rv[] = array('rdx', '5a', 1);

@@ -32,9 +32,12 @@ class Mov extends X86Mov{
 					break;
 			}
 			
-			$instr = new X86Mov($this->src, $this->dst);
-			$this->setOpcode($pre.$instr->assemble());
-			$this->setLen($instr->getLen() + $preLen);
+			// $instr = new X86Mov($this->src, $this->dst);
+			// $this->setOpcode($pre.$instr->assemble());
+			// $this->setLen($instr->getLen() + $preLen);
+			parent::__construct($this->src, $this->dst);
+			$this->setOpcode($pre.$this->assemble());
+			$this->setLen($this->getLen() + $preLen);
 		}
 		elseif($isNumSrc && $isStrDst && $lenDst == 3){
 			$mask = 0xffffffff;
@@ -79,9 +82,12 @@ class Mov extends X86Mov{
 					break;
 			}
 			
-			$instr = new X86Mov($this->src, $this->dst);
-			$this->setOpcode($pre.$instr->assemble());
-			$this->setLen($instr->getLen() + $preLen);
+			// $instr = new X86Mov($this->src, $this->dst);
+			// $this->setOpcode($pre.$instr->assemble());
+			// $this->setLen($instr->getLen() + $preLen);
+			parent::__construct($this->src, $this->dst);
+			$this->setOpcode($pre.$this->assemble());
+			$this->setLen($this->getLen() + $preLen);
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3){
 			if($this->isValidRegisterSize()){
@@ -92,9 +98,10 @@ class Mov extends X86Mov{
 				$tSrc = $tSrc[1].$tSrc[2];
 				$tDst = $tDst[1].$tDst[2];
 				
-				$instr = new X86Mov($tSrc, $tDst);
-				$this->setOpcode($instr->assemble());
-				$this->setLen($instr->getLen());
+				parent::__construct($tSrc, $tDst);
+				// $instr = new X86Mov($tSrc, $tDst);
+				// $this->setOpcode($instr->assemble());
+				// $this->setLen($instr->getLen());
 			}
 		}
 	}

@@ -21,9 +21,9 @@ class Pop extends X86Pop{
 			$register = $register[1].$register[2];
 		}
 		
-		$instr = new X86Pop($register);
-		$this->setOpcode($pre.$instr->assemble());
-		$this->setLen($instr->getLen() + $preLen);
+		parent::__construct($register);
+		$this->setOpcode($pre.$this->assemble());
+		$this->setLen($this->getLen() + $preLen);
 	}
 	
 }

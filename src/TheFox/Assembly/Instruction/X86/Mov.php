@@ -67,7 +67,8 @@ class Mov extends Instruction{
 			$opcodeLen = strlen($opcode);
 			
 			$this->setOpcode(pack('H*', $opcode));
-			$this->setLen($opcodeLen / 2);
+			// $this->setLen($opcodeLen / 2);
+			parent::__construct($opcodeLen / 2);
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
 			if($this->isValidRegisterSize()){
@@ -123,7 +124,8 @@ class Mov extends Instruction{
 				$opcodeLen = strlen($opcode);
 				
 				$this->setOpcode(pack('H*', $opcode));
-				$this->setLen($opcodeLen / 2);
+				// $this->setLen($opcodeLen / 2);
+				parent::__construct($opcodeLen / 2);
 			}
 		}
 	}

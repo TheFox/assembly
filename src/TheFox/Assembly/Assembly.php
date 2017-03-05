@@ -5,7 +5,7 @@ namespace TheFox\Assembly;
 class Assembly{
 	
 	const NAME = 'Assembly';
-	const VERSION = '0.3.1-dev';
+	const VERSION = '0.4.0-dev';
 	
 	private $instructionId = 0;
 	private $instructions = array();

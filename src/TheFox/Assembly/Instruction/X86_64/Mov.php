@@ -20,9 +20,10 @@ class Mov extends I386Mov{
 		$isStrDst = is_string($this->dst);
 		
 		if($isNumSrc && $isStrDst && $lenDst == 2){
-			$instr = new I386Mov($this->src, $this->dst);
-			$this->setOpcode($instr->assemble());
-			$this->setLen($instr->getLen());
+			parent::__construct($this->src, $this->dst);
+			// $instr = new I386Mov($this->src, $this->dst);
+			// $this->setOpcode($instr->assemble());
+			// $this->setLen($instr->getLen());
 		}
 		elseif($isNumSrc && $isStrDst && $lenDst == 3){
 			$base = 0;
@@ -107,9 +108,10 @@ class Mov extends I386Mov{
 			$this->setLen($opcodeLen / 2);
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2){
-			$instr = new I386Mov($this->src, $this->dst);
-			$this->setOpcode($instr->assemble());
-			$this->setLen($instr->getLen());
+			parent::__construct($this->src, $this->dst);
+			// $instr = new I386Mov($this->src, $this->dst);
+			// $this->setOpcode($instr->assemble());
+			// $this->setLen($instr->getLen());
 		}
 		elseif($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3){
 			if($this->isValidRegisterSize($src, $dst)){

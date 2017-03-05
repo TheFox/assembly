@@ -8,7 +8,8 @@ class Ret extends Instruction{
 	
 	public function __construct(){
 		$this->setOpcode(pack('H*', 'C3'));
-		$this->setLen(1);
+		// $this->setLen(1);
+		parent::__construct(1); // len 1
 	}
 	
 }

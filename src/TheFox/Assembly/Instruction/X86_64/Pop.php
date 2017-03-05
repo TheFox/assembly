@@ -20,10 +20,7 @@ class Pop extends I386Pop{
 					break;
 			}
 		}
-		
-		$instr = new I386Pop($register);
-		$this->setOpcode($instr->assemble());
-		$this->setLen($instr->getLen());
+		parent::__construct($register);
 	}
 	
 }
