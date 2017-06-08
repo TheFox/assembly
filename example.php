@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use TheFox\Assembly\Assembly;
 use TheFox\Assembly\Instruction\X86_64\Mov;
@@ -22,4 +22,4 @@ $opcode = $asm->assemble();
 
 $hex = unpack('H*', $opcode);
 $hex = $hex[1];
-print 'hex opcode: '.$hex."\n";
+print 'hex opcode: ' . $hex . "\n";
