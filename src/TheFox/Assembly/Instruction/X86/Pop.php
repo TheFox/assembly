@@ -8,7 +8,11 @@ use TheFox\Assembly\Instruction;
 
 class Pop extends Instruction
 {
-    public function __construct($register)
+    /**
+     * Pop constructor.
+     * @param string $register
+     */
+    public function __construct(string $register)
     {
         if (!$register) {
             return;

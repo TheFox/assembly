@@ -8,7 +8,12 @@ use TheFox\Assembly\Instruction\I386\Mov as I386Mov;
 
 class Mov extends I386Mov
 {
-    public function __construct($src, $dst)
+    /**
+     * Mov constructor.
+     * @param string $src
+     * @param string $dst
+     */
+    public function __construct(string $src, string $dst)
     {
         $this->src = strtolower($src);
         $this->dst = strtolower($dst);

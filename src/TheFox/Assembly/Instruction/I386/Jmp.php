@@ -8,7 +8,7 @@ use TheFox\Assembly\Instruction\X86\Jmp as X86Jmp;
 
 class Jmp extends X86Jmp
 {
-    public function assemble()
+    public function assemble(): string
     {
         #print 'jmp assemble'."\n";
         $dst = $this->dst;

@@ -7,7 +7,12 @@ use TheFox\Assembly\Instruction\X86\Mov as X86Mov;
 
 class Mov extends X86Mov
 {
-    public function __construct($src, $dst)
+    /**
+     * Mov constructor.
+     * @param string $src
+     * @param string $dst
+     */
+    public function __construct(string $src, string $dst)
     {
         $this->src = strtolower($src);
         $this->dst = strtolower($dst);
@@ -104,7 +109,12 @@ class Mov extends X86Mov
         }
     }
 
-    public function isValidRegisterSize($tSrc = null, $tDst = null)
+    /**
+     * @param null|string $tSrc
+     * @param null|string $tDst
+     * @return bool
+     */
+    public function isValidRegisterSize(string $tSrc = null, string $tDst = null): bool
     {
         $rv = false;
         $func = __FUNCTION__;

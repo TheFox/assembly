@@ -6,7 +6,10 @@ use TheFox\Assembly\Instruction\X86_64\Mov as X8664Mov;
 
 class MovDevTest extends BasicTestCase
 {
-    public function x8664ProviderDev()
+    /**
+     * @return array
+     */
+    public function x8664ProviderDev(): array
     {
         $rv = [];
 
@@ -18,8 +21,12 @@ class MovDevTest extends BasicTestCase
 
     /**
      * @dataProvider x8664ProviderDev
+     * @param string $src
+     * @param string $dst
+     * @param string $expected
+     * @param int $len
      */
-    public function testX8664dev($src, $dst, $expected, $len)
+    public function testX8664dev(string $src, string $dst, string $expected, int $len)
     {
         $this->basicTest(new X8664Mov($src, $dst), $expected, $len);
     }

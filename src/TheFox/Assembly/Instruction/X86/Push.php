@@ -8,7 +8,11 @@ use TheFox\Assembly\Instruction;
 
 class Push extends Instruction
 {
-    public function __construct($register)
+    /**
+     * Push constructor.
+     * @param string $register
+     */
+    public function __construct(string $register)
     {
         if (!$register) {
             return;

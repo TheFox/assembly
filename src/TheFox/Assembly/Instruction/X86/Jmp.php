@@ -9,8 +9,15 @@ use TheFox\Assembly\Instruction;
 
 class Jmp extends Instruction
 {
+    /**
+     * @var int|string|Instruction
+     */
     public $dst;
 
+    /**
+     * Jmp constructor.
+     * @param int|string|Instruction $dst
+     */
     public function __construct($dst)
     {
         parent::__construct(2); // len 2
@@ -18,7 +25,7 @@ class Jmp extends Instruction
         $this->dst = $dst;
     }
 
-    public function assemble()
+    public function assemble(): string
     {
         $dst = $this->dst;
         $isStrDst = is_string($dst);

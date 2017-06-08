@@ -6,7 +6,11 @@ use TheFox\Assembly\Instruction\X86\Pop as X86Pop;
 
 class Pop extends X86Pop
 {
-    public function __construct($register)
+    /**
+     * Pop constructor.
+     * @param string $register
+     */
+    public function __construct(string $register)
     {
         $register = strtolower($register);
 

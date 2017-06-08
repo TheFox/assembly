@@ -9,10 +9,22 @@ use TheFox\Assembly\Instruction;
 
 class Mov extends Instruction
 {
+    /**
+     * @var string
+     */
     public $src;
+
+    /**
+     * @var string
+     */
     public $dst;
 
-    public function __construct($src, $dst)
+    /**
+     * Mov constructor.
+     * @param int|string $src
+     * @param string $dst
+     */
+    public function __construct($src, string $dst)
     {
         $this->src = strtolower($src);
         $this->dst = strtolower($dst);
@@ -130,7 +142,12 @@ class Mov extends Instruction
         }
     }
 
-    public function isValidRegisterSize($tSrc = null, $tDst = null)
+    /**
+     * @param string|null $tSrc
+     * @param string|null $tDst
+     * @return bool
+     */
+    public function isValidRegisterSize(string $tSrc = null, string $tDst = null): bool
     {
         $rv = false;
 

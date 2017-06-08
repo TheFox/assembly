@@ -9,7 +9,10 @@ use TheFox\Assembly\Instruction\X86_64\Jmp as X8664Jmp;
 
 class JmpTest extends BasicTestCase
 {
-    public function x8086ValueProvider()
+    /**
+     * @return array
+     */
+    public function x8086ValueProvider(): array
     {
         $rv = [];
 
@@ -68,13 +71,19 @@ class JmpTest extends BasicTestCase
 
     /**
      * @dataProvider x8086ValueProvider
+     * @param string|int $offset
+     * @param string $expected
+     * @param int $len
      */
-    public function test8086Value($offset, $expected, $len)
+    public function test8086Value($offset, string $expected, int $len)
     {
         $this->basicTest(new X8086Jmp($offset), $expected, $len);
     }
 
-    public function x8086StringProvider()
+    /**
+     * @return array
+     */
+    public function x8086StringProvider(): array
     {
         $rv = [];
 
@@ -88,13 +97,19 @@ class JmpTest extends BasicTestCase
 
     /**
      * @dataProvider x8086StringProvider
+     * @param string $register
+     * @param string $expected
+     * @param int $len
      */
-    public function test8086String($register, $expected, $len)
+    public function test8086String(string $register, string $expected, int $len)
     {
         $this->basicTest(new X8086Jmp($register), $expected, $len);
     }
 
-    public function x8086ObjectProvider()
+    /**
+     * @return array
+     */
+    public function x8086ObjectProvider(): array
     {
         $rv = [];
 
@@ -124,8 +139,11 @@ class JmpTest extends BasicTestCase
 
     /**
      * @dataProvider x8086ObjectProvider
+     * @param int $offsetJmp
+     * @param int $offsetInstr
+     * @param string $expected
      */
-    public function test8086Object($offsetJmp, $offsetInstr, $expected)
+    public function test8086Object(int $offsetJmp, int $offsetInstr, string $expected)
     {
         $instr1 = new Instruction();
         $instr1->setOffset($offsetInstr);
@@ -149,7 +167,10 @@ class JmpTest extends BasicTestCase
         $this->assertEquals('ebfe', $opcode);
     }
 
-    public function i386ValueProvider()
+    /**
+     * @return array
+     */
+    public function i386ValueProvider(): array
     {
         $rv = [];
 
@@ -208,13 +229,19 @@ class JmpTest extends BasicTestCase
 
     /**
      * @dataProvider i386ValueProvider
+     * @param $offset
+     * @param string $expected
+     * @param int $len
      */
-    public function testI386Value($offset, $expected, $len)
+    public function testI386Value($offset, string $expected, int $len)
     {
         $this->basicTest(new I386Jmp($offset), $expected, $len);
     }
 
-    public function i386StringProvider()
+    /**
+     * @return array
+     */
+    public function i386StringProvider(): array
     {
         $rv = [];
 
@@ -233,13 +260,19 @@ class JmpTest extends BasicTestCase
 
     /**
      * @dataProvider i386StringProvider
+     * @param string $register
+     * @param string $expected
+     * @param int $len
      */
-    public function testI386String($register, $expected, $len)
+    public function testI386String(string $register, string $expected, int $len)
     {
         $this->basicTest(new I386Jmp($register), $expected, $len);
     }
 
-    public function i386ObjectProvider()
+    /**
+     * @return array
+     */
+    public function i386ObjectProvider(): array
     {
         $rv = [];
 
@@ -269,8 +302,11 @@ class JmpTest extends BasicTestCase
 
     /**
      * @dataProvider i386ObjectProvider
+     * @param int $offsetJmp
+     * @param int $offsetInstr
+     * @param string $expected
      */
-    public function testI386Object($offsetJmp, $offsetInstr, $expected)
+    public function testI386Object(int $offsetJmp, int $offsetInstr, string $expected)
     {
         $instr1 = new Instruction();
         $instr1->setOffset($offsetInstr);
@@ -294,7 +330,10 @@ class JmpTest extends BasicTestCase
         $this->assertEquals('ebfe', $opcode);
     }
 
-    public function x8664ValueProvider()
+    /**
+     * @return array
+     */
+    public function x8664ValueProvider(): array
     {
         $rv = [];
 
@@ -353,13 +392,19 @@ class JmpTest extends BasicTestCase
 
     /**
      * @dataProvider x8664ValueProvider
+     * @param $offset
+     * @param string $expected
+     * @param int $len
      */
-    public function test8664Value($offset, $expected, $len)
+    public function test8664Value($offset, string $expected, int $len)
     {
         $this->basicTest(new X8664Jmp($offset), $expected, $len);
     }
 
-    public function x8664StringProvider()
+    /**
+     * @return array
+     */
+    public function x8664StringProvider(): array
     {
         $rv = [];
 
@@ -379,12 +424,15 @@ class JmpTest extends BasicTestCase
     /**
      * @dataProvider x8664StringProvider
      */
-    public function testX8664String($register, $expected, $len)
+    public function testX8664String(string $register, string $expected, int $len)
     {
         $this->basicTest(new X8664Jmp($register), $expected, $len);
     }
 
-    public function x8664ObjectProvider()
+    /**
+     * @return array
+     */
+    public function x8664ObjectProvider(): array
     {
         $rv = [];
 
@@ -414,8 +462,11 @@ class JmpTest extends BasicTestCase
 
     /**
      * @dataProvider x8664ObjectProvider
+     * @param int $offsetJmp
+     * @param int $offsetInstr
+     * @param string $expected
      */
-    public function test8664Object($offsetJmp, $offsetInstr, $expected)
+    public function test8664Object(int $offsetJmp, int $offsetInstr, string $expected)
     {
         $instr1 = new Instruction();
         $instr1->setOffset($offsetInstr);

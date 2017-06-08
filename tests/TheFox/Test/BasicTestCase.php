@@ -3,10 +3,11 @@
 namespace TheFox\Test;
 
 use PHPUnit_Framework_TestCase;
+use TheFox\Assembly\Instruction;
 
 class BasicTestCase extends PHPUnit_Framework_TestCase
 {
-    public function basicTest($instr, $expected, $len)
+    public function basicTest(Instruction $instr, string $expected, int $len)
     {
         $opcode = unpack('H*', $instr->assemble());
         $opcode = $opcode[1];

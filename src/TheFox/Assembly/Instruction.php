@@ -4,63 +4,116 @@ namespace TheFox\Assembly;
 
 class Instruction
 {
+    /**
+     * @var int
+     */
     private $id;
+    
+    /**
+     * @var null|Assembly
+     */
     private $assembly;
+
+    /**
+     * @var int
+     */
     private $offset = 0;
+
+    /**
+     * @var string
+     */
     private $opcode = '';
+
+    /**
+     * @var int
+     */
     private $len = 0;
 
-    public function __construct($len = 1)
+    /**
+     * Instruction constructor.
+     * @param int $len
+     */
+    public function __construct(int $len = 1)
     {
         $this->setLen($len);
     }
 
-    public function setId($id)
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
-    public function getId()
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
+    /**
+     * @param Assembly $assembly
+     */
     public function setAssembly(Assembly $assembly)
     {
         $this->assembly = $assembly;
     }
 
+    /**
+     * @return null|Assembly
+     */
     public function getAssembly()
     {
         return $this->assembly;
     }
 
-    public function setOffset($offset)
+    /**
+     * @param int $offset
+     */
+    public function setOffset(int $offset)
     {
         $this->offset = $offset;
     }
 
-    public function addOffset($offset)
+    /**
+     * @param int $offset
+     */
+    public function addOffset(int $offset)
     {
         $this->offset += $offset;
     }
 
-    public function getOffset()
+    /**
+     * @return int
+     */
+    public function getOffset(): int
     {
         return $this->offset;
     }
 
-    public function setOpcode($opcode)
+    /**
+     * @param string $opcode
+     */
+    public function setOpcode(string $opcode)
     {
         $this->opcode = $opcode;
     }
 
-    public function getOpcode()
+    /**
+     * @return string
+     */
+    public function getOpcode(): string
     {
         return $this->opcode;
     }
 
-    public function setLen($len)
+    /**
+     * @param int $len
+     */
+    public function setLen(int $len)
     {
         if ($this->getAssembly() && $this->len != $len) {
             $this->getAssembly()->updateInstructionLen($this, $len);
@@ -68,12 +121,18 @@ class Instruction
         $this->len = $len;
     }
 
-    public function getLen()
+    /**
+     * @return int
+     */
+    public function getLen(): int
     {
         return $this->len;
     }
 
-    public function assemble()
+    /**
+     * @return string
+     */
+    public function assemble(): string
     {
         return $this->opcode;
     }

@@ -7,7 +7,11 @@ use TheFox\Assembly\Instruction\I386\Push as I386Push;
 
 class Push extends I386Push
 {
-    public function __construct($register)
+    /**
+     * Push constructor.
+     * @param string $register
+     */
+    public function __construct(string $register)
     {
         $register = strtolower($register);
 

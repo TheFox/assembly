@@ -4,7 +4,10 @@ namespace TheFox\Test;
 
 class MovTest extends BasicTestCase
 {
-    public function basicProvider()
+    /**
+     * @return array
+     */
+    public function basicProvider(): array
     {
         $rv = [];
 
@@ -17,7 +20,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit8ValueToRegisterProvider()
+    /**
+     * @return array
+     */
+    public function bit8ValueToRegisterProvider(): array
     {
         $rv = [];
 
@@ -96,7 +102,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit8RegisterToRegisterProvider()
+    /**
+     * @return array
+     */
+    public function bit8RegisterToRegisterProvider(): array
     {
         $rv = [];
 
@@ -176,7 +185,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit8IsValidRegisterSizeProvider()
+    /**
+     * @return array
+     */
+    public function bit8IsValidRegisterSizeProvider(): array
     {
         $rv = [];
 
@@ -189,7 +201,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit16ValueToRegisterProvider()
+    /**
+     * @return array
+     */
+    public function bit16ValueToRegisterProvider(): array
     {
         $rv = [];
 
@@ -244,7 +259,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit16RegisterToRegisterProvider()
+    /**
+     * @return array
+     */
+    public function bit16RegisterToRegisterProvider(): array
     {
         $rv = [];
 
@@ -271,7 +289,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit16IsValidRegisterSizeProvider()
+    /**
+     * @return array
+     */
+    public function bit16IsValidRegisterSizeProvider(): array
     {
         $rv = [];
 
@@ -288,7 +309,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit32ValueToRegisterProvider()
+    /**
+     * @return array
+     */
+    public function bit32ValueToRegisterProvider(): array
     {
         $rv = [];
 
@@ -367,7 +391,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit32RegisterToRegisterProvider()
+    /**
+     * @return array
+     */
+    public function bit32RegisterToRegisterProvider(): array
     {
         $rv = [];
 
@@ -394,7 +421,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit32IsValidRegisterSizeProvider()
+    /**
+     * @return array
+     */
+    public function bit32IsValidRegisterSizeProvider(): array
     {
         $rv = [];
 
@@ -415,7 +445,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit64ValueToRegisterProvider()
+    /**
+     * @return array
+     */
+    public function bit64ValueToRegisterProvider(): array
     {
         $rv = [];
 
@@ -522,7 +555,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit64RegisterToRegisterProvider()
+    /**
+     * @return array
+     */
+    public function bit64RegisterToRegisterProvider(): array
     {
         $rv = [];
 
@@ -548,7 +584,10 @@ class MovTest extends BasicTestCase
         return $rv;
     }
 
-    public function bit64IsValidRegisterSizeProvider()
+    /**
+     * @return array
+     */
+    public function bit64IsValidRegisterSizeProvider(): array
     {
         $rv = [];
 

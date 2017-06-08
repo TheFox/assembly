@@ -7,7 +7,11 @@ use TheFox\Assembly\Instruction\I386\Pop as I386Pop;
 
 class Pop extends I386Pop
 {
-    public function __construct($register)
+    /**
+     * Pop constructor.
+     * @param string $register
+     */
+    public function __construct(string $register)
     {
         $register = strtolower($register);
 

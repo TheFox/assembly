@@ -5,12 +5,26 @@ namespace TheFox\Assembly;
 class Assembly
 {
     const NAME = 'Assembly';
-    const VERSION = '0.4.0-dev.2';
+    const VERSION = '0.4.0-dev.3';
 
+    /**
+     * @var int
+     */
     private $instructionId = 0;
+
+    /**
+     * @var array
+     */
     private $instructions = [];
+
+    /**
+     * @var int
+     */
     private $offset = 0;
 
+    /**
+     * @param Instruction $instr
+     */
     public function addInstruction(Instruction $instr)
     {
         $this->instructions[$this->instructionId] = $instr;
@@ -23,7 +37,11 @@ class Assembly
         $this->instructionId++;
     }
 
-    public function updateInstructionLen(Instruction $instr, $newLen)
+    /**
+     * @param Instruction $instr
+     * @param int $newLen
+     */
+    public function updateInstructionLen(Instruction $instr, int $newLen)
     {
         $lenOffset = $newLen - $instr->getLen();
 
@@ -37,7 +55,10 @@ class Assembly
         }
     }
 
-    public function assemble()
+    /**
+     * @return string
+     */
+    public function assemble(): string
     {
         $opcodes = '';
         foreach ($this->instructions as $instrId => $instr) {
