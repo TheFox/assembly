@@ -10,7 +10,7 @@ use TheFox\Assembly\Instruction;
 class Mov extends Instruction
 {
     /**
-     * @var string
+     * @var string|int
      */
     public $src;
 
@@ -149,8 +149,6 @@ class Mov extends Instruction
      */
     public function isValidRegisterSize(string $tSrc = null, string $tDst = null): bool
     {
-        $rv = false;
-
         if ($tSrc === null) {
             $tSrc = $this->src;
         }
@@ -159,13 +157,13 @@ class Mov extends Instruction
         }
 
         if ($tSrc[1] == $tDst[1]) {
-            $rv = true;
+            return true;
         } elseif (($tSrc[1] == 'l' || $tSrc[1] == 'h')
             && ($tDst[1] == 'l' || $tDst[1] == 'h')
         ) {
-            $rv = true;
+            return true;
         }
 
-        return $rv;
+        return false;
     }
 }

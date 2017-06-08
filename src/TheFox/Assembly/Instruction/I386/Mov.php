@@ -116,9 +116,6 @@ class Mov extends X86Mov
      */
     public function isValidRegisterSize(string $tSrc = null, string $tDst = null): bool
     {
-        $rv = false;
-        $func = __FUNCTION__;
-
         if ($tSrc === null) {
             $tSrc = $this->src;
         }
@@ -130,15 +127,15 @@ class Mov extends X86Mov
         $dLen = strlen($tDst);
 
         if ($sLen == 2 && $dLen == 2) {
-            $rv = parent::$func($tSrc, $tDst);
+            return parent::isValidRegisterSize($tSrc, $tDst);
         } elseif ($sLen == 3 && $dLen == 3) {
             if ($tSrc[0] == $tDst[0]) {
                 $tSrc = $tSrc[1] . $tSrc[2];
                 $tDst = $tDst[1] . $tDst[2];
-                $rv = parent::$func($tSrc, $tDst);
+                return parent::isValidRegisterSize($tSrc, $tDst);
             }
         }
 
-        return $rv;
+        return false;
     }
 }

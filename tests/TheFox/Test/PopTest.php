@@ -105,9 +105,9 @@ class PopTest extends BasicTestCase
      * @dataProvider x8664Provider
      * @param string $register
      * @param string $expected
-     * @param string $len
+     * @param int $len
      */
-    public function testX8664(string $register, string $expected, string $len)
+    public function testX8664(string $register, string $expected, int $len)
     {
         $this->basicTest(new X8664Pop($register), $expected, $len);
     }
