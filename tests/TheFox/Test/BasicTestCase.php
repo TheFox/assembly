@@ -2,10 +2,10 @@
 
 namespace TheFox\Test;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TheFox\Assembly\Instruction;
 
-class BasicTestCase extends PHPUnit_Framework_TestCase
+class BasicTestCase extends TestCase
 {
     public function basicTest(Instruction $instr, string $expected, int $len)
     {

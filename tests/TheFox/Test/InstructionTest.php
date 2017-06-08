@@ -2,11 +2,11 @@
 
 namespace TheFox\Test;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TheFox\Assembly\Assembly;
 use TheFox\Assembly\Instruction;
 
-class InstructionTest extends PHPUnit_Framework_TestCase
+class InstructionTest extends TestCase
 {
     public function testSetAssembly()
     {

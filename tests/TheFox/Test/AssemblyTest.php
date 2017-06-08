@@ -2,7 +2,7 @@
 
 namespace TheFox\Test;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TheFox\Assembly\Assembly;
 use TheFox\Assembly\Instruction as BaseInstruction;
 use TheFox\Assembly\Instruction\X86\Nop as X8086Nop;
@@ -18,7 +18,7 @@ use TheFox\Assembly\Instruction\X86_64\Ret as X8664Ret;
 use TheFox\Assembly\Instruction\X86_64\Mov as X8664Mov;
 use TheFox\Assembly\Instruction\X86_64\Jmp as X8664Jmp;
 
-class AssemblyTest extends PHPUnit_Framework_TestCase
+class AssemblyTest extends TestCase
 {
     public function testBasic()
     {
