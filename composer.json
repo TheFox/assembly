@@ -18,7 +18,6 @@
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^6.2",
-		"doctrine/common": "^2.4",
 		"phpstan/phpstan": "^0.7"
 	},
 	"autoload": {

@@ -22,7 +22,7 @@ class Mov extends X86Mov
         $isStrSrc = is_string($this->src);
 
         $lenDst = strlen($this->dst);
-        $isNumDst = is_numeric($this->dst);
+        //$isNumDst = is_numeric($this->dst);
         $isStrDst = is_string($this->dst);
 
         if ($isNumSrc && $isStrDst && $lenDst == 2) {
@@ -38,10 +38,8 @@ class Mov extends X86Mov
                     break;
             }
 
-            // $instr = new X86Mov($this->src, $this->dst);
-            // $this->setOpcode($pre.$instr->assemble());
-            // $this->setLen($instr->getLen() + $preLen);
             parent::__construct($this->src, $this->dst);
+            
             $this->setOpcode($pre . $this->assemble());
             $this->setLen($this->getLen() + $preLen);
         } elseif ($isNumSrc && $isStrDst && $lenDst == 3) {
@@ -86,15 +84,12 @@ class Mov extends X86Mov
                     break;
             }
 
-            // $instr = new X86Mov($this->src, $this->dst);
-            // $this->setOpcode($pre.$instr->assemble());
-            // $this->setLen($instr->getLen() + $preLen);
             parent::__construct($this->src, $this->dst);
+            
             $this->setOpcode($pre . $this->assemble());
             $this->setLen($this->getLen() + $preLen);
         } elseif ($isStrSrc && $isStrDst && $lenSrc == 3 && $lenDst == 3) {
             if ($this->isValidRegisterSize()) {
-                #\Doctrine\Common\Util\Debug::dump($this->src);
                 $tSrc = $this->src;
                 $tDst = $this->dst;
 
@@ -102,9 +97,6 @@ class Mov extends X86Mov
                 $tDst = $tDst[1] . $tDst[2];
 
                 parent::__construct($tSrc, $tDst);
-                // $instr = new X86Mov($tSrc, $tDst);
-                // $this->setOpcode($instr->assemble());
-                // $this->setLen($instr->getLen());
             }
         }
     }

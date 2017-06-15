@@ -26,6 +26,7 @@ class Pop extends X86Pop
         }
 
         parent::__construct($register);
+        
         $this->setOpcode($pre . $this->assemble());
         $this->setLen($this->getLen() + $preLen);
     }

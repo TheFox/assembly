@@ -34,7 +34,7 @@ class Mov extends Instruction
         $isStrSrc = is_string($this->src);
 
         $lenDst = strlen($this->dst);
-        #$isNumDst = is_numeric($this->dst);
+        //$isNumDst = is_numeric($this->dst);
         $isStrDst = is_string($this->dst);
 
         if ($isNumSrc && $isStrDst && $lenDst == 2) {
@@ -80,7 +80,7 @@ class Mov extends Instruction
             $opcodeLen = strlen($opcode);
 
             $this->setOpcode(pack('H*', $opcode));
-            // $this->setLen($opcodeLen / 2);
+            
             parent::__construct($opcodeLen / 2);
         } elseif ($isStrSrc && $isStrDst && $lenSrc == 2 && $lenDst == 2) {
             if ($this->isValidRegisterSize()) {
@@ -136,7 +136,7 @@ class Mov extends Instruction
                 $opcodeLen = strlen($opcode);
 
                 $this->setOpcode(pack('H*', $opcode));
-                // $this->setLen($opcodeLen / 2);
+
                 parent::__construct($opcodeLen / 2);
             }
         }

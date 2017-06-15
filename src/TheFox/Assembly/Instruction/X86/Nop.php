@@ -11,7 +11,7 @@ class Nop extends Instruction
     public function __construct()
     {
         $this->setOpcode(pack('H*', '90'));
-        // $this->setLen(1);
+
         parent::__construct(1);
     }
 }

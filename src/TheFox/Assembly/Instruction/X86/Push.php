@@ -39,7 +39,7 @@ class Push extends Instruction
             $opcodeLen = strlen($opcode);
 
             $this->setOpcode(pack('H*', $opcode));
-            // $this->setLen($opcodeLen / 2);
+
             parent::__construct($opcodeLen / 2);
         }
     }
