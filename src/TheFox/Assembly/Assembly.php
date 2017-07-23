@@ -5,7 +5,7 @@ namespace TheFox\Assembly;
 class Assembly
 {
     const NAME = 'Assembly';
-    const VERSION = '0.5.0-dev.1';
+    const VERSION = '0.5.0-dev.2';
 
     /**
      * @var int
