@@ -21,7 +21,6 @@ composer require thefox/assembly
 ## Links
 
 - [Packagist Package](https://packagist.org/packages/thefox/assembly)
-- [Travis CI Repository](https://travis-ci.org/TheFox/assembly)
 - [Intel 80x86 Assembly Language OpCodes](http://www.mathemainzel.info/files/x86asmref.html)
 
 ## License
