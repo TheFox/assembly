@@ -1,5 +1,10 @@
 # Release Notes for Assembly v0.x
 
+## v0.5.0 [unreleased]
+
+- MIT License
+- Remove Travis CI support.
+
 ## v0.4.0
 
 - Moved Make targets to Bash scripts.

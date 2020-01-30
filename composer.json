@@ -1,7 +1,7 @@
 {
     "name": "thefox/assembly",
     "description": "Assemble x86, i386, x86_64 instructions with PHP.",
-    "license": "GPL-3.0",
+    "license": "MIT",
     "type": "project",
     "keywords": [
         "asm",
